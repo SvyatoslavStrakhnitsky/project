@@ -1,8 +1,8 @@
-* {
-  padding: 0;
-  margin: 0;
-}
+@import './reset.css';
+@import './themes/dark.css';
+@import './themes/light.css';
 
-.app {
-  background-color: blue;
+body {
+  color: var(--primary-color);
+  background-color: var(--bg-color);
 }
