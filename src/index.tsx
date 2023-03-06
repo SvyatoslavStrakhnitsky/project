@@ -1,29 +1,14 @@
-import { StrictMode, Suspense } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { AboutPageAsync } from "./pages/AboutPage.async";
-import { MainPageAsync } from "./pages/MainPage.async";
-import "./index.css";
-import styles from "./index.module.css";
+import { BrowserRouter } from "react-router-dom";
+import { App } from "@/app/App";
+import "@/app/styles/index.css";
 
-function App() {
-  return (
-    <div className={styles.app}>
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-      <Suspense fallback={<span>Loading...</span>}>
-        <Routes>
-          <Route path="/" element={<MainPageAsync />} />
-          <Route path="/about" element={<AboutPageAsync />} />
-          <Route path="*" element={<h1>Ooops...</h1>} />
-        </Routes>
-      </Suspense>
-    </div>
-  );
-}
+const rootElement = document.getElementById("root");
 
-const root = createRoot(document.getElementById("root"));
-root.render(
+if (!rootElement) throw new Error("Failed to find the root element");
+
+createRoot(rootElement).render(
   <StrictMode>
     <BrowserRouter>
       <App />

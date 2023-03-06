@@ -17,6 +17,9 @@ export default (env: BuildEnv): Configuration => {
     entry: path.resolve(__dirname, "src", "index.tsx"),
     build: path.resolve(__dirname, "dist"),
     html: path.resolve(__dirname, "public", "index.html"),
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
   };
 
   return buildWebpackConfig({
