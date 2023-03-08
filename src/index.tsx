@@ -1,9 +1,8 @@
-import { StrictMode } from "react";
+import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import { App } from "@/app/App";
+import { RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "@/app/providers/ThemeProvider";
-import "@/app/styles/index.css";
+import { routes } from "@/app/router";
 import "@/app/styles/index.css";
 
 const rootElement = document.getElementById("root");
@@ -12,10 +11,8 @@ if (!rootElement) throw new Error("Failed to find the root element");
 
 createRoot(rootElement).render(
   <StrictMode>
-    <BrowserRouter>
-      <ThemeProvider>
-        <App />
-      </ThemeProvider>
-    </BrowserRouter>
+    <ThemeProvider>
+      <RouterProvider router={routes} />
+    </ThemeProvider>
   </StrictMode>
 );
