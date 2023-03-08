@@ -1,0 +1,14 @@
+.button {
+  padding: 0.5em;
+}
+
+.clear {
+  all: unset;
+  color: var(--bg-color);
+  cursor: pointer;
+}
+
+.primary {
+  color: var(--bg-color);
+  background-color: var(--primary-color);
+}

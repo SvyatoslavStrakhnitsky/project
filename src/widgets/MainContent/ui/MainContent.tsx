@@ -1,5 +1,5 @@
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { memo, Suspense } from "react";
+import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import cls from "./MainContent.module.css";
 

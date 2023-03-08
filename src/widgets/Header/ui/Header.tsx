@@ -1,14 +1,13 @@
 import { memo } from "react";
 import { classNames } from "@/shared/lib/classNames/classNames";
+import { ThemeSwitcher } from "@/widgets/ThemeSwitcher";
 import { Navbar } from "@/widgets/Navbar/ui/Navbar";
-import { useTheme } from "@/app/providers/ThemeProvider";
 import cls from "./Header.module.css";
 
 export const Header = memo(() => {
-  const { toggleTheme } = useTheme();
   return (
     <header className={classNames(cls.header)}>
-      <button onClick={toggleTheme}>Theme change</button>
+      <ThemeSwitcher />
       <Navbar />
     </header>
   );
