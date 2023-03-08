@@ -1,0 +1,11 @@
+.navbar {
+  margin-left: auto;
+}
+
+.navbar > ul  {
+  display: flex;
+} 
+
+.navbar li + li {
+  margin-left: 15px;
+}
