@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: var(--navbar-height);
+  height: var(--header-height);
   background-color: var(--inverted-bg-color);
   padding: 1em;
 }
