@@ -1,14 +1,15 @@
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { Loader } from '@/shared/ui/Loader';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import cls from './MainContent.module.css';
 
 export const MainContent = () => {
     return (
-        <Suspense fallback="Loading...">
-            <main className={classNames(cls.main)}>
+        <main className={classNames(cls.main)}>
+            <Suspense fallback={<Loader className={cls.pageLoader}/>}>
                 <Outlet />
-            </main>
-        </Suspense>
+            </Suspense>
+        </main>
     );
 };

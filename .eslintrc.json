@@ -29,6 +29,11 @@
         "@typescript-eslint/indent": [2, 4],
         "max-len": [2, { "code": 100, "ignoreComments": true }],
         "object-curly-newline": "error",
-        "no-duplicate-imports": "error"
+        "no-duplicate-imports": "error",
+        "react/jsx-wrap-multilines": ["error", {
+            "return": "parens-new-line"
+            }
+        ],
+        "semi": "error"
     }
 }
