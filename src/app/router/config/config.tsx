@@ -3,6 +3,7 @@ import { MainPage } from '@/pages/MainPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { createBrowserRouter, type RouteObject } from 'react-router-dom';
 import { AppLayout } from '@/app/layout';
+import { ErrorBoundary } from '@/app/providers/ErrorBoundary';
 
 const enum AppRoutes {
     MAIN = '/',
@@ -13,10 +14,12 @@ const enum AppRoutes {
 const routeConfig: RouteObject[] = [
     {
         element: <AppLayout />,
+        errorElement:<ErrorBoundary />,
         children: [
             {
                 path: AppRoutes.MAIN,
                 element: <MainPage />,
+                errorElement:<ErrorBoundary />,
             },
             {
                 path: AppRoutes.ABOUT,

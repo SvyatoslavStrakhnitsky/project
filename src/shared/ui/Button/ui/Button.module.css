@@ -1,5 +1,6 @@
 .button {
     padding: 0.5em;
+    border: none;
 }
 
 .clear {
@@ -11,4 +12,5 @@
 .primary {
     color: var(--bg-color);
     background-color: var(--primary-color);
+    border-radius: 5px;
 }

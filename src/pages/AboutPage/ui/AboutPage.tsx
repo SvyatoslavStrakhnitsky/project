@@ -5,6 +5,7 @@ const AboutPage: FC = () => {
     const { t } = useTranslation();
 
     return <div>{t('Main')}</div>;
+
 };
 
 export default AboutPage;

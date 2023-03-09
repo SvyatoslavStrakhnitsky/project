@@ -1,7 +1,7 @@
-import { Suspense } from "react";
 import { Header } from "@/widgets/Header";
 import { MainContent } from "@/widgets/MainContent";
 import { Sidebar } from "@/widgets/Sidebar";
+import { Suspense } from "react";
 
 export const AppLayout = () => {
     return (
