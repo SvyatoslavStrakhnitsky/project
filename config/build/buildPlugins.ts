@@ -1,6 +1,6 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import { ProgressPlugin } from "webpack";
+import { ProgressPlugin, DefinePlugin } from "webpack";
 import type { BuildOptions } from "./types/config";
 
 export const buildPlugins = (options: BuildOptions) => {
@@ -11,6 +11,9 @@ export const buildPlugins = (options: BuildOptions) => {
       template: paths.html,
     }),
     new ProgressPlugin(),
+    new DefinePlugin({
+      __IS_DEV__: JSON.stringify(isDev),
+    }),
   ];
 
   if (!isDev) {

@@ -7,6 +7,9 @@ declare module "*.module.css" {
 }
 
 declare module "*.svg" {
-  const svg: React.FunctionComponent<React.SVGAttributes<SVGAElement>>;
+  import { FunctionComponent, SVGAttributes } from "react";
+  const svg: FunctionComponent<SVGAttributes<SVGAElement>>;
   export default svg;
 }
+
+declare const __IS_DEV__: boolean;
