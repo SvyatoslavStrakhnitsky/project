@@ -1,1 +1,1 @@
-export { MainContent } from "./ui/MainContent";
+export { MainContent } from './ui/MainContent';

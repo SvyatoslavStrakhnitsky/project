@@ -1,23 +1,23 @@
 .sidebar {
-  width: 300px;
-  height: calc(100vh - var(--header-height));
-  background-color: var(--inverted-bg-color);
-  padding: 1em;
-  transition: width .5s;
-  position: relative;
+    width: 300px;
+    height: calc(100vh - var(--header-height));
+    background-color: var(--inverted-bg-color);
+    padding: 1em;
+    transition: width 0.5s;
+    position: relative;
 }
 
 .collapsed {
-  width: 50px;
+    width: 50px;
 }
 
 .btnCollapse {
-  position: absolute;
-  left: 0.2em;
-  bottom: 0;
+    position: absolute;
+    left: 0.2em;
+    bottom: 0;
 }
 
 .btnCollapse svg {
-  width: 1em;
-  height: 1em;
+    width: 1em;
+    height: 1em;
 }

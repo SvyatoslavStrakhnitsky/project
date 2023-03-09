@@ -1,11 +1,11 @@
 .navbar {
-  margin-left: auto;
+    margin-left: auto;
 }
 
-.navbar > ul  {
-  display: flex;
-} 
+.navbar > ul {
+    display: flex;
+}
 
 .navbar li + li {
-  margin-left: 15px;
+    margin-left: 15px;
 }

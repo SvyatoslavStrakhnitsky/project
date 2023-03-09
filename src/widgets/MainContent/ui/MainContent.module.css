@@ -1,4 +1,4 @@
 .main {
-  height: var(--content-height);
-  background-color: var(----bg-color);
+    height: var(--content-height);
+    background-color: var(--bg-color);
 }

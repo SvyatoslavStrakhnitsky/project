@@ -1,9 +1,9 @@
-@import './reset.css';
-@import './variables/global.scss';
-@import './themes/dark.css';
-@import './themes/light.css';
+@import url('./reset.css');
+@import url('./variables/global.scss');
+@import url('./themes/dark.css');
+@import url('./themes/light.css');
 
 body {
-  color: var(--primary-color);
-  background-color: var(--bg-color);
+    color: var(--primary-color);
+    background-color: var(--bg-color);
 }

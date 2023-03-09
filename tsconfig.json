@@ -1,24 +1,24 @@
 {
-  "compilerOptions": {
-    "outDir": "dist",
-    "module": "ESNext",
-    "target": "es5",
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "baseUrl": ".",
-    "paths": {
-        "@/*": [
-            "./src/*"
-        ]
-    }
-  },
-  "ts-node": {
     "compilerOptions": {
-      "module": "CommonJS",
+        "outDir": "dist",
+        "module": "ESNext",
+        "target": "es5",
+        "jsx": "react-jsx",
+        "allowJs": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "./src/*"
+            ]
+        }
+    },
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
     }
-  }
 }
