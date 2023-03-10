@@ -3,6 +3,9 @@ import { AppLink } from '@/shared/ui/AppLink';
 import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import { HStack } from '@/shared/ui/Stack';
 import type{ FC } from 'react';
+import { Button } from '@/shared/ui/Button';
+import { LoginModal } from '@/features/UserAuth';
+import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 
 interface NavbarProps {
     className?: string;
@@ -10,6 +13,11 @@ interface NavbarProps {
 
 export const Navbar: FC<NavbarProps> = ({className}) => {
     const { t } = useTranslation();
+    const {
+        isOpen,
+        onOpen,
+        onClose,
+    } = useModal();
 
     return (
         <nav className={classNames('', {}, [className])}>
@@ -20,7 +28,16 @@ export const Navbar: FC<NavbarProps> = ({className}) => {
                 <li>
                     <AppLink to="/about">{t('About')}</AppLink>
                 </li>
+                <li>
+                    <Button theme={'clear'} onClick={onOpen}>
+                        {t('Sign in')}
+                    </Button>
+                </li>
             </HStack>
+            <LoginModal 
+                isOpen={isOpen}
+                onClose={onClose}
+            />
         </nav>
     );
 };
