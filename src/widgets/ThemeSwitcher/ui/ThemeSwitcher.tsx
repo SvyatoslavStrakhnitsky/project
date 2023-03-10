@@ -2,7 +2,7 @@ import { Theme, useTheme } from '@/app/providers/ThemeProvider';
 import { Button } from '@/shared/ui/Button';
 import DarkIcon from '@/shared/assets/icons/dark-theme.svg';
 import LightIcon from '@/shared/assets/icons/light-theme.svg';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import { FC } from 'react';
 import cls from './ThemeSwitcher.module.css';
 

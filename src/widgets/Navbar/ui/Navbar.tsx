@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { AppLink } from '@/shared/ui/AppLink';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import { HStack } from '@/shared/ui/Stack';
 import type{ FC } from 'react';
 

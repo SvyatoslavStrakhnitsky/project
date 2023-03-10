@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './Loader.module.css';
 
 interface LoaderProps  {

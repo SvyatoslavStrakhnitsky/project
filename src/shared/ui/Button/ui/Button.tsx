@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes, FC, ReactNode } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './Button.module.css';
 
 type ButtonTheme = 'clear' | 'primary';

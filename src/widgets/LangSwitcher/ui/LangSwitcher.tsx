@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Button } from '@/shared/ui/Button';
 import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import Ukraine from '@/shared/assets/icons/ukraine-flag.svg';
 import USA from '@/shared/assets/icons/usa-flag.svg';
 

@@ -1,4 +1,4 @@
-import { classNames, Mods } from "@/shared/lib/classNames/classNames";
+import { classNames, Mods } from "@/shared/lib/helpers/classNames/classNames";
 import type { FC, ReactNode } from "react";
 import cls from './Flex.module.css';
 

@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import { Button } from '@/shared/ui/Button';
 import DoubleArrowLeft from '@/shared/assets/icons/double-arrow-left.svg';
 import DoubleArrowRight from '@/shared/assets/icons/double-arrow-right.svg';
