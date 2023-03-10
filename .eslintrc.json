@@ -34,6 +34,7 @@
             "return": "parens-new-line"
             }
         ],
-        "semi": "error"
+        "semi": "error",
+        "@typescript-eslint/member-delimiter-style": "error"
     }
 }

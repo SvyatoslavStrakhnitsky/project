@@ -4,12 +4,15 @@ import { ThemeSwitcher } from '@/widgets/ThemeSwitcher';
 import { LangSwitcher } from '@/widgets/LangSwitcher';
 import { Navbar } from '@/widgets/Navbar/ui/Navbar';
 import cls from './Header.module.css';
+import { HStack } from '@/shared/ui/Stack';
 
 export const Header = memo(() => {
     return (
         <header className={classNames(cls.header)}>
-            <ThemeSwitcher />
-            <LangSwitcher />
+            <HStack gap={8} >
+                <ThemeSwitcher />
+                <LangSwitcher />
+            </HStack>
             <Navbar />
         </header>
     );

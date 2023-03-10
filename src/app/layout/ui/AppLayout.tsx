@@ -1,3 +1,4 @@
+import { HStack } from "@/shared/ui/Stack";
 import { Header } from "@/widgets/Header";
 import { MainContent } from "@/widgets/MainContent";
 import { Sidebar } from "@/widgets/Sidebar";
@@ -7,10 +8,10 @@ export const AppLayout = () => {
     return (
         <Suspense fallback="">
             <Header />
-            <div style={{ display: "flex" }}>
+            <HStack>
                 <Sidebar />
                 <MainContent />
-            </div>
+            </HStack>
         </Suspense>
     );
 };
