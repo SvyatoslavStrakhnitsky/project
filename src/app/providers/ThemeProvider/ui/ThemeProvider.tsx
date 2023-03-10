@@ -19,7 +19,7 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
     useEffect(() => {
         document.body.className = theme;
         return () => document.body.classList.remove(theme);
-    }, []);
+    }, [theme]);
 
     return (
         <ThemeContext.Provider 

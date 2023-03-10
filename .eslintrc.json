@@ -18,7 +18,8 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "react-hooks"
     ],
     "rules": {
         "react/display-name": "off",
@@ -35,6 +36,8 @@
             }
         ],
         "semi": "error",
-        "@typescript-eslint/member-delimiter-style": "error"
+        "@typescript-eslint/member-delimiter-style": "error",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "error"
     }
 }
