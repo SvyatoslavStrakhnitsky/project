@@ -5,7 +5,8 @@ import { Sidebar } from "@/widgets/Sidebar";
 import { Suspense } from "react";
 
 export const AppLayout = () => {
-    return (<Suspense fallback="">
+    return (
+        <Suspense fallback="">
             <Header />
             <HStack>
                 <Sidebar />
