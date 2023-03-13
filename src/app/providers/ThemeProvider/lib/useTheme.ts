@@ -1,13 +1,13 @@
-import { useContext } from "react";
-import { Theme, ThemeContext } from "./ThemeContext";
-import { LOCAL_STORAGE_THEME_KEY } from "@/shared/const/localStorage";
+import { useContext } from 'react';
+import { Theme, ThemeContext } from './ThemeContext';
+import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localStorage';
 
 export const useTheme = () => {
     const themeState = useContext(ThemeContext);
 
     if (themeState === null) {
         throw new Error(
-            "Theme state not found. Try wrapping a parent component with <ThemeProvider>."
+            'Theme state not found. Try wrapping a parent component with <ThemeProvider>.'
         );
     }
 

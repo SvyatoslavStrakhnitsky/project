@@ -8,7 +8,7 @@ import { ErrorBoundary } from '@/app/providers/ErrorBoundary';
 const enum AppRoutes {
     MAIN = '/',
     ABOUT = '/about',
-    NOT_FOUND = "*"
+    NOT_FOUND = '*'
 }
 
 const routeConfig: RouteObject[] = [

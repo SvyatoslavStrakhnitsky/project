@@ -1,7 +1,7 @@
-import { classNames } from "@/shared/lib/helpers/classNames/classNames";
-import { Button } from "@/shared/ui/Button";
-import { useTranslation } from "react-i18next";
-import cls from "./ErrorPage.module.css";
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
+import { Button } from '@/shared/ui/Button';
+import { useTranslation } from 'react-i18next';
+import cls from './ErrorPage.module.css';
 
 export const ErrorPage = () => {
     const {t} = useTranslation();

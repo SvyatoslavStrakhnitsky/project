@@ -1,8 +1,8 @@
-import { classNames, Mods } from "@/shared/lib/helpers/classNames/classNames";
-import type { FC, ReactNode } from "react";
+import { classNames, Mods } from '@/shared/lib/helpers/classNames/classNames';
+import type { FC, ReactNode } from 'react';
 import cls from './Flex.module.css';
 
-type FlexJustify = 'start' | 'center' | 'end' | 'between' | "evenly" | 'around';
+type FlexJustify = 'start' | 'center' | 'end' | 'between' | 'evenly' | 'around';
 type FlexAlign = 'start' | 'center' | 'end';
 type FlexDirection = 'row' | 'column';
 type FlexGap = 4 | 8 | 16 | 32;

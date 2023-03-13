@@ -6,5 +6,8 @@
     "Reload page": "Reload page",
     "Sign in": "Sign in",
     "Name": "Name",
-    "Password": "Password"
+    "Password": "Password",
+    "Error": "Error",
+    "Login form": "Login form",
+    "Log out": "Log out"
 }

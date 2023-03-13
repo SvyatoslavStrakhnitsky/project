@@ -1,13 +1,15 @@
-import { classNames } from "@/shared/lib/helpers/classNames/classNames";
-import { FC, InputHTMLAttributes, useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
-import { HStack } from "../../Stack";
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
+import { ChangeEvent, FC, InputHTMLAttributes, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+import { HStack } from '../../Stack';
 import cls from './Input.module.css';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'> {
     label?: string;
+    value?: string;
     placeholder?: string;
     className?: string;
+    onChange?: (value: string) => void;
 }
 
 export const Input: FC<InputProps> = (props) => {
@@ -16,6 +18,8 @@ export const Input: FC<InputProps> = (props) => {
         label,
         placeholder,
         autoFocus,
+        value,
+        onChange,
         ...otherProps
     } = props;
 
@@ -27,6 +31,10 @@ export const Input: FC<InputProps> = (props) => {
             inputRef.current?.focus();
         }
     }, [autoFocus]);
+
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        onChange?.(e.target.value);
+    };
 
     const localePlaceholder = placeholder ? t(placeholder) : '';
 
@@ -42,6 +50,8 @@ export const Input: FC<InputProps> = (props) => {
                 type="text" 
                 placeholder={localePlaceholder} 
                 className={classNames(cls.input, {}, [className])} 
+                value={value}
+                onChange={onChangeHandler}
                 {...otherProps}
             />
         </HStack>

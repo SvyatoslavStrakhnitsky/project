@@ -1,6 +1,6 @@
-import { FC } from "react";
-import { Modal } from "@/shared/ui/Modal";
-import { LoginForm } from "../LoginForm/LoginForm";
+import { FC } from 'react';
+import { Modal } from '@/shared/ui/Modal';
+import { LoginForm } from '../LoginForm/LoginForm';
 
 interface LoginModalProps {
     isOpen: boolean;

@@ -1,5 +1,6 @@
 .app_dark_theme {
     --primary-color: rgb(222, 173, 219);
+    --secondary-color: rgb(187, 122, 183);
     --bg-color: rgb(46, 30, 182);
     --inverted-bg-color: rgb(222, 173, 219);
 }

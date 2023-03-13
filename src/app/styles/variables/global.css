@@ -22,4 +22,6 @@
     /*  Colors */
 
     --overlay-color: rgb(0, 0, 0, 60%);
+    --error-dark: rgba(210, 0, 0);
+    --error-light: rgb(255, 24, 24);
 }

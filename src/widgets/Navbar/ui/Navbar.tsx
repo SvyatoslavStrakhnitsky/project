@@ -2,10 +2,15 @@ import { useTranslation } from 'react-i18next';
 import { AppLink } from '@/shared/ui/AppLink';
 import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import { HStack } from '@/shared/ui/Stack';
-import type{ FC } from 'react';
+import{ FC, useEffect } from 'react';
 import { Button } from '@/shared/ui/Button';
 import { LoginModal } from '@/features/UserAuth';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
+import { useSelector } from 'react-redux';
+import { checkAuthData, userActions } from '@/entities/User';
+import { useLogoutMutation } from '@/shared/api/rtkApi';
+import { TOKEN_STORAGE_KEY } from '@/shared/const/localStorage';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 interface NavbarProps {
     className?: string;
@@ -18,6 +23,35 @@ export const Navbar: FC<NavbarProps> = ({className}) => {
         onOpen,
         onClose,
     } = useModal();
+
+    const dispatch = useAppDispatch();
+
+    const isAuth = useSelector(checkAuthData);
+
+    const [logout, {isSuccess}] = useLogoutMutation();
+
+    const handleLogout = async () => {
+        await logout();
+    };
+
+    useEffect(() => {
+        if (isSuccess) {
+            localStorage.removeItem(TOKEN_STORAGE_KEY);
+            dispatch(userActions.setAuthData(false));
+        }
+    }, [isSuccess, dispatch]);
+
+    if (isAuth) {
+        return    (
+            <nav className={classNames('', {}, [className])}>
+                <HStack gap={16}>
+                    <Button theme={'clear'} onClick={handleLogout}>
+                        {t('Log out')}
+                    </Button>
+                </HStack>
+            </nav>
+        );
+    }
 
     return (
         <nav className={classNames('', {}, [className])}>
