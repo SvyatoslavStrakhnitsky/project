@@ -1,3 +1,3 @@
-import { StateSchema } from '@/shared/config/redux/store/StateSchema';
+import { StateSchema } from '@/shared/config/redux/types/StateSchema';
 
 export const checkAuthData = (state: StateSchema) => state.user.isAuth;

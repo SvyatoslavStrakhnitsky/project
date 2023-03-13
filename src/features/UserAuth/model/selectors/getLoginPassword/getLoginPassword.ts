@@ -1,3 +1,3 @@
-import { StateSchema } from '@/shared/config/redux/store/StateSchema';
+import { StateSchema } from '@/shared/config/redux/types/StateSchema';
 
-export const getLoginPassword = (state: StateSchema) => state.login.password;
+export const getLoginPassword = (state: StateSchema) => state.login?.password || '';

@@ -1,21 +1,30 @@
 import { userReducer } from '@/entities/User';
-import { loginReducer } from '@/features/UserAuth';
 import { rtkApi } from '@/shared/api/rtkApi';
-import { configureStore } from '@reduxjs/toolkit';
-import { StateSchema } from './StateSchema';
+import { CombinedState, configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
+import { createReducersManager } from './reducersManager';
+import { StateSchema } from '../types/StateSchema';
 
-export const createReduxStore = (initialState?: StateSchema) => 
-    configureStore<StateSchema>({
-        reducer: {
-            login: loginReducer,
-            user: userReducer,
-            [rtkApi.reducerPath]: rtkApi.reducer
-        },
+export const createReduxStore = (initialState?: StateSchema) => {
+    const rootReducer: ReducersMapObject<StateSchema> = {
+        user: userReducer,
+        [rtkApi.reducerPath]: rtkApi.reducer
+    };
+
+    const reducersManager = createReducersManager(rootReducer);
+
+    const store = configureStore({
+        reducer: reducersManager.reduce as Reducer<CombinedState<StateSchema>>,
         devTools: __IS_DEV__,
         preloadedState: initialState,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        //@ts-ignore
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(rtkApi.middleware)
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware().concat(rtkApi.middleware),
     });
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    store.reducersManager = reducersManager;
+
+    return store;
+};
 
 export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch']

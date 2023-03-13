@@ -16,22 +16,5 @@ export const rtkApi = createApi({
         },
 
     }),
-    endpoints: (builder) => ({
-        login: builder.mutation<{token: string}, {username: string; password: string}>({
-            query: (body) => ({
-                url:'/login',
-                method: 'POST',
-                body
-            }),
-        }),
-        logout: builder.mutation<void, void>({
-            query: () => ({
-                url:'/logout',
-                method: 'POST',
-            }),
-        }),
-    }),
-
+    endpoints: () => ({}),
 });
-
-export const { useLoginMutation, useLogoutMutation } = rtkApi;
