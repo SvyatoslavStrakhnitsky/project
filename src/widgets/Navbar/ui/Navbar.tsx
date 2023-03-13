@@ -8,9 +8,9 @@ import { LoginModal } from '@/features/UserAuth';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { useSelector } from 'react-redux';
 import { checkAuthData, userActions } from '@/entities/User';
-import { useLogoutMutation } from '@/shared/api/rtkApi';
 import { TOKEN_STORAGE_KEY } from '@/shared/const/localStorage';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useLogoutMutation } from '@/features/UserAuth/api/authorizationApi';
 
 interface NavbarProps {
     className?: string;
@@ -35,7 +35,7 @@ export const Navbar: FC<NavbarProps> = ({className}) => {
     };
 
     useEffect(() => {
-        if (isSuccess) {
+        if (isSuccess) {            
             localStorage.removeItem(TOKEN_STORAGE_KEY);
             dispatch(userActions.setAuthData(false));
         }

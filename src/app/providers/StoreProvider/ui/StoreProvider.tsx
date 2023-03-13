@@ -1,4 +1,4 @@
-import { StateSchema } from '@/shared/config/redux/store/StateSchema';
+import { StateSchema } from '@/shared/config/redux/types/StateSchema';
 import { createReduxStore } from '@/shared/config/redux/store/store';
 import type { FC, ReactNode } from 'react';
 import { Provider } from 'react-redux';
