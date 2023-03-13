@@ -1,5 +1,5 @@
 import { classNames } from '@/shared/lib/helpers/classNames/classNames';
-import { ChangeEvent, FC, InputHTMLAttributes, useEffect, useRef } from 'react';
+import { ChangeEvent, FC, InputHTMLAttributes, memo, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HStack } from '../../Stack';
 import cls from './Input.module.css';
@@ -12,7 +12,7 @@ interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value'
     onChange?: (value: string) => void;
 }
 
-export const Input: FC<InputProps> = (props) => {
+export const Input: FC<InputProps> = memo((props) => {
     const {
         className,
         label,
@@ -56,4 +56,4 @@ export const Input: FC<InputProps> = (props) => {
             />
         </HStack>
     );
-};
+});

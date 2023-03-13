@@ -2,7 +2,7 @@ import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input/ui/Input';
-import { FC, useCallback, useEffect } from 'react';
+import { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
@@ -10,12 +10,12 @@ import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLogi
 import { loginActions, loginReducer } from '../../model/slice/LoginSlice';
 import {Text} from '@/shared/ui/Text';
 import cls from './LoginForm.module.css';
-import { userActions } from '@/entities/User';
-import { TOKEN_STORAGE_KEY } from '@/shared/const/localStorage';
 import {
     DynamicModuleLoader, ReducersList 
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useLoginMutation } from '../../api/authorizationApi';
+import { userActions } from '@/entities/User';
+import { TOKEN_STORAGE_KEY } from '@/shared/const/localStorage';
 
 export interface LoginFormProps {
     className?: string;
@@ -41,8 +41,6 @@ const LoginForm: FC<LoginFormProps> = (props) => {
         {
             isError,
             isLoading,
-            isSuccess, 
-            data
         }
     ] = useLoginMutation();
 
@@ -55,19 +53,15 @@ const LoginForm: FC<LoginFormProps> = (props) => {
     }, [dispatch]);
 
     const handleLogin = async () => {
-        await login({username, password});
+        const result = await login({username, password});
+
+        if ('data' in result) {
+            dispatch(userActions.setAuthData(true));
+            localStorage.setItem(TOKEN_STORAGE_KEY, result.data.token);
+            onClose?.();
+        }
     };
 
-    useEffect(() => {
-        if (isSuccess && data?.token) {
-            dispatch(loginActions.setUsername(''));
-            dispatch(loginActions.setPassword(''));
-            dispatch(userActions.setAuthData(true));
-            localStorage.setItem(TOKEN_STORAGE_KEY, data.token);
-            onClose?.();
-        } 
-    }, [isSuccess, onClose, dispatch, data]);
-    
     return (
         <DynamicModuleLoader reducers={initialReducers}>
             <form className={classNames(cls.form, {}, [className])}>

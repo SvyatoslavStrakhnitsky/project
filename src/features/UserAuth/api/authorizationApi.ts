@@ -6,7 +6,7 @@ const authorizedApi = rtkApi.injectEndpoints({
             query: (body) => ({
                 url:'/login',
                 method: 'POST',
-                body
+                body,
             }),
         }),
         logout: builder.mutation<void, void>({

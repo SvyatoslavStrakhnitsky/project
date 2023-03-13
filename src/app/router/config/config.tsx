@@ -4,6 +4,7 @@ import { NotFoundPage } from '@/pages/NotFoundPage';
 import { createBrowserRouter, type RouteObject } from 'react-router-dom';
 import { AppLayout } from '@/app/layout';
 import { ErrorBoundary } from '@/app/providers/ErrorBoundary';
+import { ProtectedRoute } from '@/shared/lib/components/ProtectedRoute/ProtectedRoute';
 
 const enum AppRoutes {
     MAIN = '/',
@@ -20,10 +21,15 @@ const routeConfig: RouteObject[] = [
                 path: AppRoutes.MAIN,
                 element: <MainPage />,
                 errorElement:<ErrorBoundary />,
+
             },
             {
                 path: AppRoutes.ABOUT,
-                element: <AboutPage />,
+                element:(  
+                    <ProtectedRoute>
+                        <AboutPage />
+                    </ProtectedRoute>
+                )
             },
             {
                 path: AppRoutes.NOT_FOUND,
