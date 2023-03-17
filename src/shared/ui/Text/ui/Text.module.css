@@ -15,3 +15,41 @@
 .error .text {
     color: var(--error-light);
 }
+
+.inverted .title {
+    color: var(--inverted-primary-color);
+}
+
+.inverted .text {
+    color: var(--inverted-secondary-color);
+}
+
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+.size_m .title{
+    font: var(--font-l);
+}
+
+.size_m .text {
+    font: var(--font-m);
+}
+
+
+.size_l .title{
+    font: var(--font-xl);
+}
+
+.size_l .text {
+    font: var(--font-l);
+}

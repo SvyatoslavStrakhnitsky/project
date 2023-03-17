@@ -7,15 +7,17 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
-import { loginActions, loginReducer } from '../../model/slice/LoginSlice';
+import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import {Text} from '@/shared/ui/Text';
 import cls from './LoginForm.module.css';
-import {
-    DynamicModuleLoader, ReducersList 
+import { 
+    DynamicModuleLoader,
+    ReducersList
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useLoginMutation } from '../../api/authorizationApi';
 import { userActions } from '@/entities/User';
 import { TOKEN_STORAGE_KEY } from '@/shared/const/localStorage';
+import { TextTheme } from '@/shared/ui/Text/ui/Text';
 
 export interface LoginFormProps {
     className?: string;
@@ -56,8 +58,9 @@ const LoginForm: FC<LoginFormProps> = (props) => {
         const result = await login({username, password});
 
         if ('data' in result) {
-            dispatch(userActions.setAuthData(true));
             localStorage.setItem(TOKEN_STORAGE_KEY, result.data.token);
+            dispatch(userActions.setUserData(result.data.user));
+            dispatch(userActions.setAuthData(true));
             onClose?.();
         }
     };
@@ -66,7 +69,7 @@ const LoginForm: FC<LoginFormProps> = (props) => {
         <DynamicModuleLoader reducers={initialReducers}>
             <form className={classNames(cls.form, {}, [className])}>
                 <Text title={t('Login form')}/>
-                {isError && <Text text={t('Error')} theme={'error'}/>}
+                {isError && <Text text={t('Error')} theme={TextTheme.ERROR}/>}
                 <Input placeholder={'Name'} 
                     value={username}
                     onChange={onChangeUsername} 

@@ -1,27 +1,59 @@
+import { FC, memo } from 'react';
 import { classNames } from '@/shared/lib/helpers/classNames/classNames';
-import { FC } from 'react';
 import cls from './Text.module.css';
 
-type TextTheme = 'primary' | 'error';
+export const enum TextTheme {
+    PRIMARY = 'primary',
+    INVERTED = 'inverted',
+    ERROR = 'error'
+}
+
+export const enum TextAlign {
+    RIGHT = 'right',
+    LEFT = 'left',
+    CENTER = 'center'
+}
+
+export const enum TextSize {
+    M = 'size_m',
+    L = 'size_l',
+}
 
 interface TextProps {
     className?: string;
-    text?: string | null;
     title?: string | null;
+    text?: string | null;
     theme?: TextTheme;
+    textAlign?: TextAlign;
+    size?: TextSize;
 }
 
-export const Text: FC<TextProps> = (props) => {
+export const Text: FC<TextProps> = memo((props) => {
     const {
         className,
-        text,
         title,
-        theme = 'primary'
+        text,
+        theme = TextTheme.PRIMARY,
+        textAlign = TextAlign.LEFT,
+        size = TextSize.M,
     } = props;
+
     return (
-        <div className={classNames('', {}, [cls[theme], className])}>
-            {text && <p className={classNames(cls.text)}>{text}</p> }
-            {title && <p className={classNames(cls.title)}>{title}</p> }
+        <div className={classNames('', {}, [
+            className, cls[theme],
+            cls[textAlign],
+            cls[size]])}
+        >
+            {title && (
+                <p className={cls.title}>
+                    {title}
+                </p>
+            )}
+            {text && (
+                <p className={cls.text}>
+                    {text}
+                </p>
+            ) }
         </div>
     );
-};
+});
