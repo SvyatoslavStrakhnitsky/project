@@ -3,6 +3,9 @@ import { Article } from '../model/types/Article';
 
 export const articleApi = rtkApi.injectEndpoints({
     endpoints: (builder) => ({
+        articles: builder.query<Article[], void>({
+            query: () => '/articles'
+        }),
         articleById: builder.query<Article, {id: string}>({
             query: ({id}) => `/articles/${id}`
         }),
@@ -10,4 +13,4 @@ export const articleApi = rtkApi.injectEndpoints({
     overrideExisting: false,
 });
 
-export const { useArticleByIdQuery } = articleApi;
+export const { useArticleByIdQuery, useArticlesQuery } = articleApi;

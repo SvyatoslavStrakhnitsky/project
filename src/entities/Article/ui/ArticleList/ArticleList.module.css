@@ -1,0 +1,9 @@
+.small {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+.big .card {
+    margin-bottom: 2em;
+}

@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import { Text } from '@/shared/ui/Text';
-import { ArticleTextBlock } from '../../types/Article';
+import { ArticleTextBlock } from '../../model/types/Article';
 import cls from './ArticleBlockText.module.css';
 
 interface ArticleBlockTextProps {

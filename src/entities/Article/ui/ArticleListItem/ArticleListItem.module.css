@@ -1,0 +1,107 @@
+.big .views {
+    margin-left: auto;
+}
+
+.big .header {
+    display: flex;
+    align-items: center;
+}
+
+.big .username {
+    margin-left: 0.5em;
+}
+
+.big .date {
+    margin-left: auto;
+}
+
+.big .title {
+    margin-top: 0.5em;
+}
+
+.big .img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    margin: 1em 0;
+}
+
+.big .footer {
+    display: flex;
+    align-items: center;
+}
+
+.big .textBlock {
+    max-height: 200px;
+    overflow-y: hidden;
+    margin-bottom: 1em;
+}
+
+.big .card {
+    margin-bottom: 2em;
+}
+
+
+.small {
+    width: 230px;
+    transition: 0.2s linear;
+    cursor: pointer;
+}
+
+.small .date {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.small:hover {
+    opacity: 0.9;
+    scale: (1.01);
+}
+
+.small:hover .date {
+    display: block;
+}
+
+.imageWrapper {
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+.small .img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.small   .infoWrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5em;
+}
+
+.small .types p {
+    width: 115px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.small .views {
+    margin-left: auto;
+    margin-right: 0.5em;
+}
+
+.small .title {
+    margin-top: 0.5em;
+}
+
+.small .title p {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+

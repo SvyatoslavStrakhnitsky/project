@@ -1,0 +1,1 @@
+export {ArticlesViewSchema}  from'./model/types/ArticlesViewSchema';

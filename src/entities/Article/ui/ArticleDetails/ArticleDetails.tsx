@@ -1,6 +1,6 @@
-import { FC, useCallback } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useArticleByIdQuery } from '../../../api/articleApi';
+import { useArticleByIdQuery } from '../../api/articleApi';
 import {Text} from '@/shared/ui/Text';
 import { Skeleton } from '@/shared/ui/Skeleton';
 import { Avatar } from '@/shared/ui/Avatar/ui/Avatar';
@@ -10,14 +10,20 @@ import ViewIcon from '@/shared/assets/icons/view.svg';
 import cls from './ArticleDetails.module.css';
 import { Icon } from '@/shared/ui/Icon/ui/Icon';
 import { classNames } from '@/shared/lib/helpers/classNames/classNames';
-import { ArticleBlock, ArticleBlockType } from '../../types/Article';
+import {
+    ArticleBlock, 
+    ArticleBlockType
+} from '../../model/types/Article';
 import { ArticleBlockCode } from '../ArticleBlockCode/ArticleBlockCode';
 import { ArticleBlockImage } from '../ArticleBlockImage/ArticleBlockImage';
 import { ArticleBlockText } from '../ArticleBlockText/ArticleBlockText';
 import { 
     DynamicModuleLoader, ReducersList 
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { articleDetailsActions, articleDetailsReducer } from '../../slice/ArticleDetailsSlice';
+import {
+    articleDetailsActions,
+    articleDetailsReducer
+} from '../../model/slice/ArticleDetailsSlice';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { PageError } from '@/shared/ui/PageError';
 import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
@@ -42,7 +48,12 @@ export const ArticleDetails: FC<ArticleDetailsProps> = (props) => {
 
 
     const {data: article, isError, isLoading} = useArticleByIdQuery({id});
-    dispatch(articleDetailsActions.setArticleDetailsData(article));
+
+
+    useEffect(() => {
+        dispatch(articleDetailsActions.setArticleDetailsData(article));
+    }, [article, dispatch]);
+
 
 
     const renderBlock = useCallback((block: ArticleBlock, index: number) => {

@@ -1,0 +1,12 @@
+.viewSelector {
+    display: flex;
+    align-items: center;
+}
+
+.selected {
+    fill: var(--secondary-color);
+}
+
+.btn {
+    padding: 0.5em;
+}

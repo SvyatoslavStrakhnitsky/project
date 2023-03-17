@@ -1,5 +1,6 @@
 import { ArticleDetailsSchema } from '@/entities/Article';
 import { UserSchema } from '@/entities/User/model/types/UserSchema';
+import { ArticlesViewSchema } from '@/features/ArticlesViewSelector';
 import { LoginSchema } from '@/features/UserAuth/model/types/LoginSchema';
 import { rtkApi } from '@/shared/api/rtkApi';
 import {
@@ -15,6 +16,7 @@ export interface StateSchema {
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
     login?: LoginSchema;
     articleDetails?: ArticleDetailsSchema;
+    articlesView?: ArticlesViewSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
