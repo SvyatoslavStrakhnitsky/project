@@ -78,10 +78,8 @@ const ArticlesPage: FC<ArticlePageProps> = (props) => {
         }
     }, [dispatch, hasMore, isNextPageExists, nextPage]);
 
-
-
     return (
-        <DynamicModuleLoader reducers={initialReducers}>
+        <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount={false}>
             <Page 
                 className={classNames(cls.articlePage, {}, [className])} 
                 onScrollEnd={onScrollEnd}
