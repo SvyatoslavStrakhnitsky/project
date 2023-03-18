@@ -45,6 +45,12 @@ export const Navbar: FC<NavbarProps> = ({className}) => {
         return    (
             <nav className={classNames('', {}, [className])}>
                 <HStack gap={16}>
+                    <li>
+                        <AppLink to="/">{t('Main')}</AppLink>
+                    </li>
+                    <li>
+                        <AppLink to="/articles">{t('Articles')}</AppLink>
+                    </li>
                     <Button theme={'clear'} onClick={handleLogout}>
                         {t('Log out')}
                     </Button>
@@ -58,9 +64,6 @@ export const Navbar: FC<NavbarProps> = ({className}) => {
             <HStack gap={16}>
                 <li>
                     <AppLink to="/">{t('Main')}</AppLink>
-                </li>
-                <li>
-                    <AppLink to="/about">{t('About')}</AppLink>
                 </li>
                 <li>
                     <Button theme={'clear'} onClick={onOpen}>

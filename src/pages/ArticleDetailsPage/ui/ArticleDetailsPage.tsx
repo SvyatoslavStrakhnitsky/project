@@ -1,24 +1,32 @@
+import { AppRoutes } from '@/app/router/config/config';
 import { ArticleDetails } from '@/entities/Article';
 import { 
     getArticleDetailsData
 } from '@/entities/Article/model/selectors/getArticleDetailsData/getArticleDetailsData';
 import { CommentsList } from '@/entities/Comment';
 import { AddCommentForm } from '@/features/AddCommentForm';
+import { Button } from '@/shared/ui/Button';
 import { Skeleton } from '@/shared/ui/Skeleton';
 import { Text } from '@/shared/ui/Text';
 import { TextAlign, TextSize, TextTheme } from '@/shared/ui/Text/ui/Text';
 import { Page } from '@/widgets/Page';
-import { Suspense } from 'react';
+import { Suspense, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import cls from './ArticleDetailsPage.module.css';
 
 const ArticleDetailsPage = () => {
     const {t} = useTranslation();
     const { id } = useParams<{ id: string }>();
 
+    const navigate = useNavigate();
     const article = useSelector(getArticleDetailsData);
+
+    
+    const onBackToList = useCallback(() => {
+        navigate(AppRoutes.ARTICLES);
+    }, [navigate]);
 
 
     if (!id) {
@@ -27,6 +35,10 @@ const ArticleDetailsPage = () => {
 
     return (
         <Page>
+
+            <Button onClick={onBackToList}>
+                {t('Back to list')}
+            </Button>
             <ArticleDetails id={id} />
             {
                 article 

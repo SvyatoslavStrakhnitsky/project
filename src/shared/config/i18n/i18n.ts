@@ -12,7 +12,7 @@ i18n.use(Backend)
             order: ['localStorage', 'htmlTag', 'cookie'],
             caches: ['localStorage', 'cookie'],
         },
-        // debug: __IS_DEV__,
+        debug: __IS_DEV__,
     });
 
 export default i18n;

@@ -1,6 +1,6 @@
 {
     "Main": "Main",
-    "About": "About",
+    "Articles": "Articles",
     "Page not found": "Page not found",
     "Unexpected error": "Unexpected error ocurred...",
     "Reload page": "Reload page",
@@ -12,5 +12,8 @@
     "Log out": "Log out",
     "Write a comment": "Write a comment",
     "Comments": "Comments",
-    "Send": "Send"
+    "Send": "Send",
+    "Back to list": "Back to list",
+    "No articles": "No articles",
+    "No comments": "No comments"
 }
