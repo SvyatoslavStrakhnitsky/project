@@ -7,7 +7,7 @@ const initialState: ArticlesViewSchema = {
     view: (localStorage.getItem(ARTICLES_VIEW_STORAGE_KEY) as ArticleViewType) || 'big'
 };
 
-const articlesPageSlice = createSlice({
+const articlesViewSlice = createSlice({
     name: 'articlesViewSelector',
     initialState,
     reducers: {
@@ -20,4 +20,4 @@ const articlesPageSlice = createSlice({
 export const {
     actions: articlesViewSelectorActions,
     reducer: articlesViewSelectorReducer
-} = articlesPageSlice;
+} = articlesViewSlice;

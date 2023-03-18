@@ -7,6 +7,7 @@ import { AddCommentForm } from '@/features/AddCommentForm';
 import { Skeleton } from '@/shared/ui/Skeleton';
 import { Text } from '@/shared/ui/Text';
 import { TextAlign, TextSize, TextTheme } from '@/shared/ui/Text/ui/Text';
+import { Page } from '@/widgets/Page';
 import { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -25,7 +26,7 @@ const ArticleDetailsPage = () => {
     }
 
     return (
-        <>
+        <Page>
             <ArticleDetails id={id} />
             {
                 article 
@@ -48,7 +49,7 @@ const ArticleDetailsPage = () => {
                     </>
                     : null
             }   
-        </>
+        </Page>
     );
 };
 

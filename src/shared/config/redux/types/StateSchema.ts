@@ -2,6 +2,7 @@ import { ArticleDetailsSchema } from '@/entities/Article';
 import { UserSchema } from '@/entities/User/model/types/UserSchema';
 import { ArticlesViewSchema } from '@/features/ArticlesViewSelector';
 import { LoginSchema } from '@/features/UserAuth/model/types/LoginSchema';
+import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 import { rtkApi } from '@/shared/api/rtkApi';
 import {
     AnyAction,
@@ -17,6 +18,7 @@ export interface StateSchema {
     login?: LoginSchema;
     articleDetails?: ArticleDetailsSchema;
     articlesView?: ArticlesViewSchema;
+    articlesPage?: ArticlesPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

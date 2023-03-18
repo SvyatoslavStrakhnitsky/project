@@ -1,20 +1,17 @@
-import { FC, HTMLAttributeAnchorTarget } from 'react';
-import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import { Text, TextSize } from '@/shared/ui/Text';
+import { FC, HTMLAttributeAnchorTarget } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Article, ArticleViewType } from '../../model/types/Article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 import cls from './ArticleList.module.css';
-import { useSelector } from 'react-redux';
-import {
-    getArticlesView 
-} from '@/features/ArticlesViewSelector/model/selectors/getArticlesView/getArticleView';
 
 interface ArticleListProps {
     className?: string;
     articles?: Article[];
     isLoading?: boolean;
+    view?: ArticleViewType;
     target?: HTMLAttributeAnchorTarget;
 }
 
@@ -27,11 +24,11 @@ export const ArticleList: FC<ArticleListProps> = (props) => {
         className,
         articles,
         isLoading,
+        view = 'big',
         target,
     } = props;
 
     const { t } = useTranslation();
-    const view = useSelector(getArticlesView);
 
     const renderArticle = (article: Article) => (
         <ArticleListItem
@@ -55,7 +52,7 @@ export const ArticleList: FC<ArticleListProps> = (props) => {
     }
 
     return (
-        <div className={classNames(cls.articleList, {}, [className, cls[view.toLowerCase()]])}>
+        <div className={classNames(cls.articleList, {}, [className, cls[view]])}>
             {articles?.length
                 ? articles.map(renderArticle)
                 : null}
