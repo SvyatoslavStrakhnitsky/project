@@ -1,4 +1,3 @@
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from '@/app/providers/ThemeProvider';
@@ -12,11 +11,9 @@ const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Failed to find the root element');
 
 createRoot(rootElement).render(
-    <StrictMode>
-        <StoreProvider>
-            <ThemeProvider>
-                <RouterProvider router={routes} />
-            </ThemeProvider>
-        </StoreProvider>
-    </StrictMode>
+    <StoreProvider>
+        <ThemeProvider>
+            <RouterProvider router={routes} />
+        </ThemeProvider>
+    </StoreProvider>
 );
