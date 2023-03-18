@@ -1,6 +1,7 @@
 import { ArticleDetailsSchema } from '@/entities/Article';
 import { UserSchema } from '@/entities/User/model/types/UserSchema';
 import { ArticlesViewSchema } from '@/features/ArticlesViewSelector';
+import { ScrollRestorationSchema } from '@/features/ScrollRestoration';
 import { LoginSchema } from '@/features/UserAuth/model/types/LoginSchema';
 import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 import { rtkApi } from '@/shared/api/rtkApi';
@@ -14,6 +15,7 @@ import {
 
 export interface StateSchema {
     user: UserSchema;
+    scrollRestoration: ScrollRestorationSchema;
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
     login?: LoginSchema;
     articleDetails?: ArticleDetailsSchema;

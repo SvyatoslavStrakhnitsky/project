@@ -1,6 +1,12 @@
+import { getPageScrollByPath, scrollRestorationActions } from '@/features/ScrollRestoration';
+import { StateSchema } from '@/shared/config/redux/types/StateSchema';
 import { classNames } from '@/shared/lib/helpers/classNames/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
-import { FC, MutableRefObject, ReactNode, useRef } from 'react';
+import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
+import { FC, MutableRefObject, ReactNode, UIEvent, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import cls from './Page.module.css';
 
 interface PageProps {
@@ -16,6 +22,11 @@ export const Page: FC<PageProps> = (props) => {
         onScrollEnd
     } = props;
 
+    const dispatch = useAppDispatch();
+    const {pathname} = useLocation();
+    const scrollPosition = useSelector(
+        (state: StateSchema) => getPageScrollByPath(state, pathname));
+
     const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
 
@@ -25,10 +36,22 @@ export const Page: FC<PageProps> = (props) => {
         callback: onScrollEnd
     });
 
+    useEffect(() => {
+        wrapperRef.current.scrollTop = scrollPosition;
+    });
+
+    const handleScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
+        dispatch(scrollRestorationActions.setScrollPosition({
+            position: e.currentTarget.scrollTop,
+            path: pathname
+        }));
+    }, 500);
+
     return (
-        <section
+        <div
             ref={wrapperRef}
             className={classNames(cls.page, {}, [className])}
+            onScroll={handleScroll}
         >
             {children}
             {onScrollEnd &&  <div
@@ -36,6 +59,6 @@ export const Page: FC<PageProps> = (props) => {
                 className={cls.trigger}
             />
             }     
-        </section>
+        </div>
     );
 };

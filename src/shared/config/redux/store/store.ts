@@ -3,10 +3,12 @@ import { rtkApi } from '@/shared/api/rtkApi';
 import { CombinedState, configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { createReducersManager } from './reducersManager';
 import { StateSchema } from '../types/StateSchema';
+import { scrollRestorationReducer } from '@/features/ScrollRestoration';
 
 export const createReduxStore = (initialState?: StateSchema) => {
     const rootReducer: ReducersMapObject<StateSchema> = {
         user: userReducer,
+        scrollRestoration: scrollRestorationReducer,
         [rtkApi.reducerPath]: rtkApi.reducer
     };
 
