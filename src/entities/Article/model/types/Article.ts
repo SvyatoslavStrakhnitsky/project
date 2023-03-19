@@ -7,9 +7,16 @@ export const enum ArticleBlockType {
 }
 
 export const enum ArticleType {
+    ALL = 'ALL',
     IT = 'IT',
     ECONOMICS = 'ECONOMICS',
     SCIENCE = 'SCIENCE'
+}
+
+export const enum ArticleSortField {
+    VIEWS = 'views',
+    TITLE = 'title',
+    CREATED_AT = 'createdAt'
 }
 
 export type ArticleViewType = 'small' | 'big';

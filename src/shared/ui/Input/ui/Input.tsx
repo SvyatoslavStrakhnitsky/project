@@ -18,7 +18,7 @@ export const Input: FC<InputProps> = memo((props) => {
         label,
         placeholder,
         autoFocus,
-        value,
+        value = '',
         onChange,
         ...otherProps
     } = props;

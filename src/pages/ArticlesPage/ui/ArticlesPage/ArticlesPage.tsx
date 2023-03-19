@@ -3,7 +3,7 @@ import { useArticlesQuery } from '@/entities/Article/api/articleApi';
 import {
     getArticlesView
 } from '@/features/ArticlesViewSelector/model/selectors/getArticlesView/getArticleView';
-import { 
+import {
     articlesViewSelectorReducer
 } from '@/features/ArticlesViewSelector/model/slice/articlesViewSelector';
 import { ArticlesViewSelector } from '@/features/ArticlesViewSelector/ui/ArticlesViewSelector';
@@ -13,15 +13,30 @@ import {
 import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Page } from '@/widgets/Page';
-import { FC, useCallback, useEffect } from 'react';
+import { FC, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
-import { 
-    getArticlesPageHasMore 
-} from '../model/selectors/getArticlesPageHasMore/getArticlesPageHasMore';
-import { getArticlesPageLimit } from '../model/selectors/getArticlesPageLimit/getArticlesPageLimit';
-import { getArticlesPagePage } from '../model/selectors/getArticlesPagePage/getArticlesPagePage';
-import { articlesPageActions, articlesPageReducer } from '../model/slice/articlesPage';
+import {
+    getArticlesPageHasMore
+} from '../../model/selectors/getArticlesPageHasMore/getArticlesPageHasMore';
+import {
+    getArticlesPageLimit
+} from '../../model/selectors/getArticlesPageLimit/getArticlesPageLimit';
+import {
+    getArticlesPageOrder
+} from '../../model/selectors/getArticlesPageOrder/getArticlesPageOrder';
+import {
+    getArticlesPagePage
+} from '../../model/selectors/getArticlesPagePage/getArticlesPagePage';
+import {
+    getArticlesPageSearch
+} from '../../model/selectors/getArticlesPageSearch/getArticlesPageSearch';
+import { getArticlesPageSort } from '../../model/selectors/getArticlesPageSort/getArticlesPageSort';
+import { getArticlesPageType } from '../../model/selectors/getArticlesPageType/getArticlesPageType';
+import {
+    getShouldArticlesReset
+} from '../../model/selectors/getShouldArticlesReset/getShouldArticlesReset';
+import { articlesPageActions, articlesPageReducer } from '../../model/slice/articlesPage';
+import { ArticlesPageFilters } from '../ArticlesPageFilters/ArticlesPageFilters';
 import cls from './ArticlesPage.module.css';
 
 interface ArticlePageProps {
@@ -46,37 +61,39 @@ const ArticlesPage: FC<ArticlePageProps> = (props) => {
     const limit = useSelector(getArticlesPageLimit);
     const hasMore = useSelector(getArticlesPageHasMore);
     const view = useSelector(getArticlesView);
-    const [searchParams, setSearchParams] = useSearchParams();
-
-    useEffect(() => {
-        setSearchParams({page: `${page}`, limit: `${limit}`});
-    }, [limit, page, setSearchParams]);
-
+    const search = useSelector(getArticlesPageSearch);
+    const type = useSelector(getArticlesPageType);
+    const sort = useSelector(getArticlesPageSort);
+    const order = useSelector(getArticlesPageOrder);
+    const replace = useSelector(getShouldArticlesReset);
 
     const {
         articles, 
         nextPage, 
         isNextPageExists,
         isArticlesLoading,
-        isArticlesFetching
-    } = useArticlesQuery(`?page=${page}&limit=${limit}`, {
+        isArticlesFetching,
+    } = useArticlesQuery( {replace, page, limit, search, type, sort, order}, {
         selectFromResult: ({data, isLoading, isFetching}) => ({
             articles: data?.articles,
             nextPage: data?.pagination?.nextPage,
             isNextPageExists: data?.pagination?.isNextPageExists,
             isArticlesLoading: isLoading,
-            isArticlesFetching: isFetching
-        })
+            isArticlesFetching: isFetching,
+        }),
     });
 
     const onScrollEnd = useCallback(() => {        
-        if (hasMore && isNextPageExists && nextPage) {            
+        if (hasMore && isNextPageExists && nextPage && !!articles?.length) {            
             dispatch(articlesPageActions.setArticlesPagePage(nextPage));        
             dispatch(
                 articlesPageActions.setArticlesPageHasMore(isNextPageExists)
-            );        
+            );
+            dispatch(articlesPageActions.setShouldArticlesReset(false));        
         }
-    }, [dispatch, hasMore, isNextPageExists, nextPage]);
+    }, [hasMore, isNextPageExists, nextPage, articles?.length, dispatch]);
+
+    const isLoading = isArticlesLoading || isArticlesFetching;
 
     return (
         <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount={false}>
@@ -84,12 +101,13 @@ const ArticlesPage: FC<ArticlePageProps> = (props) => {
                 className={classNames(cls.articlePage, {}, [className])} 
                 onScrollEnd={onScrollEnd}
             >
+                <ArticlesPageFilters />
                 <ArticlesViewSelector />
                 <ArticleList 
                     className={cls.list}
                     articles={articles}
                     view={view}
-                    isLoading={isArticlesLoading || isArticlesFetching}
+                    isLoading={isLoading}
                 />
             </Page>
         </DynamicModuleLoader>

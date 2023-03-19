@@ -19,7 +19,7 @@ export const Page: FC<PageProps> = (props) => {
     const {
         children,
         className,
-        onScrollEnd
+        onScrollEnd,
     } = props;
 
     const dispatch = useAppDispatch();
@@ -33,7 +33,7 @@ export const Page: FC<PageProps> = (props) => {
     useInfiniteScroll({
         wrapperRef,
         triggerRef,
-        callback: onScrollEnd
+        callback: onScrollEnd,
     });
 
     useEffect(() => {
@@ -54,7 +54,7 @@ export const Page: FC<PageProps> = (props) => {
             onScroll={handleScroll}
         >
             {children}
-            {onScrollEnd &&  <div
+            {onScrollEnd && <div
                 ref={triggerRef}
                 className={cls.trigger}
             />
