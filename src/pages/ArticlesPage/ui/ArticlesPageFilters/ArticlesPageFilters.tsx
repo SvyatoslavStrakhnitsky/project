@@ -1,4 +1,3 @@
-
 import { ArticleSortField, ArticleType } from '@/entities/Article/model/types/Article';
 import { ArticleSortSelector } from '@/entities/Article/ui/ArticleSortSelector/ArticleSortSelector';
 import { ArticleTypeTabs } from '@/entities/Article/ui/ArticleTypeTabs/ArticleTypeTabs';

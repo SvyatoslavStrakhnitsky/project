@@ -60,7 +60,7 @@ export const ArticleSortSelector: FC<ArticleSortSelectorProps> = (props) => {
                 onChange={onChangeSort}
             />
             <Select
-                label={t('Sort')}
+                label={t('Order')}
                 options={orderOptions}
                 value={order}
                 onChange={onChangeOrder}
