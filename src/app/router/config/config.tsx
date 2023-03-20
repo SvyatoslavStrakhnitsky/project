@@ -8,7 +8,7 @@ import { ProtectedRoute } from '@/shared/lib/components/ProtectedRoute/Protected
 import { createBrowserRouter, type RouteObject } from 'react-router-dom';
 
 export const enum AppRoutes {
-    MAIN = '/',
+    PROFILE = '/profile/:id',
     ARTICLES = '/articles',
     ARTICLES_DETAILS = '/articles/:id',
     NOT_FOUND = '*'
@@ -20,7 +20,7 @@ const routeConfig: RouteObject[] = [
         errorElement:<ErrorBoundary />,
         children: [
             {
-                path: AppRoutes.MAIN,
+                path: AppRoutes.PROFILE,
                 element: <MainPage />,
                 errorElement:<ErrorBoundary />,
 

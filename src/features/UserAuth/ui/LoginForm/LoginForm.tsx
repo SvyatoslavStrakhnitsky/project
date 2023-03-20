@@ -18,6 +18,7 @@ import { useLoginMutation } from '../../api/authorizationApi';
 import { userActions } from '@/entities/User';
 import { TOKEN_STORAGE_KEY } from '@/shared/const/localStorage';
 import { TextTheme } from '@/shared/ui/Text/ui/Text';
+import { useNavigate } from 'react-router-dom';
 
 export interface LoginFormProps {
     className?: string;
@@ -38,6 +39,8 @@ const LoginForm: FC<LoginFormProps> = (props) => {
     const dispatch = useAppDispatch();
     const username = useSelector(getLoginUsername);
     const password = useSelector(getLoginPassword);
+
+    const navigate = useNavigate();
 
     const [login, 
         {
@@ -61,6 +64,7 @@ const LoginForm: FC<LoginFormProps> = (props) => {
             localStorage.setItem(TOKEN_STORAGE_KEY, result.data.token);
             dispatch(userActions.setUserData(result.data.user));
             dispatch(userActions.setAuthData(true));
+            navigate(`/profile/${result.data.user.id}`);
             onClose?.();
         }
     };
