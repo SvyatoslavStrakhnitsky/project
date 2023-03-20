@@ -2,6 +2,7 @@ import { ArticleSortField, ArticleType } from '@/entities/Article/model/types/Ar
 import { ArticleSortSelector } from '@/entities/Article/ui/ArticleSortSelector/ArticleSortSelector';
 import { ArticleTypeTabs } from '@/entities/Article/ui/ArticleTypeTabs/ArticleTypeTabs';
 import { scrollRestorationActions } from '@/features/ScrollRestoration';
+import { ARTICLES_QUERY_PARAMS } from '@/shared/const/articles';
 import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
@@ -10,13 +11,9 @@ import { Card } from '@/shared/ui/Card';
 import { Input } from '@/shared/ui/Input';
 import { FC, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-import { 
-    getArticlesPageOrder 
-} from '../../model/selectors/getArticlesPageOrder/getArticlesPageOrder';
-import { getArticlesPageSort } from '../../model/selectors/getArticlesPageSort/getArticlesPageSort';
-import { getArticlesPageType } from '../../model/selectors/getArticlesPageType/getArticlesPageType';
+import { useLocation, useSearchParams } from 'react-router-dom';
+
+
 import { articlesPageActions } from '../../model/slice/articlesPage';
 import cls from './ArticlesPageFilters.module.css';
 
@@ -25,6 +22,13 @@ interface ArticlesPageFiltersProps {
 }
 
 const DEBOUNCE_DELAY = 500;
+
+const {
+    orderParam,
+    searchParam,
+    sortParam,
+    typeParam
+} = ARTICLES_QUERY_PARAMS;
 
 export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = (props) => {
     const {
@@ -36,41 +40,42 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = (props) => {
 
     const dispatch = useAppDispatch();
 
-    const [searchQuery, setSearchQuery] = useState('');
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchQuery, setSearchQuery] = useState(searchParams.get(searchParam) || '');
 
-    const onFilterChange = useCallback(() => {
+    const onFilterChange = useCallback(<T extends string >(name: string, value: T) => {
+        const field = name.toString();
+
         dispatch(scrollRestorationActions.setScrollPosition({
             position: 0,
             path: pathname
         }));
         dispatch(articlesPageActions.setShouldArticlesReset(true));
         dispatch(articlesPageActions.setArticlesPagePage(1));
-    }, [dispatch, pathname]);
-
-    const order = useSelector(getArticlesPageOrder);
-    const sort = useSelector(getArticlesPageSort);
-    const type = useSelector(getArticlesPageType);
+        searchParams.set(field, value);
+        setSearchParams(searchParams);
+    }, [dispatch, pathname, searchParams, setSearchParams]);
 
     const searchFetch = useCallback((value: string) => {        
         dispatch(articlesPageActions.setArticlesPageSearch(value.trim()));
-        onFilterChange();
+        onFilterChange(searchParam, value);
     }, [dispatch, onFilterChange]);
 
     const debouncedSearchFetch = useDebounce(searchFetch, DEBOUNCE_DELAY);
 
     const onChangeSort = useCallback((sort: ArticleSortField) => {
         dispatch(articlesPageActions.setArticlesPageSort(sort));
-        onFilterChange();
+        onFilterChange(sortParam, sort);
     }, [dispatch, onFilterChange]);
 
     const onChangeOrder = useCallback((order: SortOrder) => {
         dispatch(articlesPageActions.setArticlesPageOrder(order));
-        onFilterChange();
+        onFilterChange(orderParam, order);
     }, [dispatch, onFilterChange]);
 
     const onChangeType = useCallback((type: ArticleType) => {
         dispatch(articlesPageActions.setArticlesPageType(type));
-        onFilterChange();
+        onFilterChange(typeParam, type);
     }, [dispatch, onFilterChange]);
 
     const onChangeSearch = useCallback((value: string) => {
@@ -82,8 +87,8 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = (props) => {
         <div className={classNames(cls.articlesPageFilters, {}, [className])}>
             <div className={cls.sortWrapper}>
                 <ArticleSortSelector
-                    order={order}
-                    sort={sort}
+                    order={searchParams.get(orderParam) as SortOrder}
+                    sort={searchParams.get(sortParam) as ArticleSortField}
                     onChangeSort={onChangeSort}
                     onChangeOrder={onChangeOrder}
                 />
@@ -96,7 +101,7 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = (props) => {
                 />
             </Card>
             <ArticleTypeTabs
-                value={type}
+                value={searchParams.get(typeParam) as ArticleType}
                 onChangeType={onChangeType}
                 className={cls.tabs}
             />

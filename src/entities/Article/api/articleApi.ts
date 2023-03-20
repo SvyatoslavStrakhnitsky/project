@@ -1,6 +1,5 @@
-import { ArticleType, ArticleSortField } from '@/entities/Article/model/types/Article';
+import { ArticleType } from '@/entities/Article/model/types/Article';
 import { rtkApi } from '@/shared/api/rtkApi';
-import { SortOrder } from '@/shared/types';
 import { Article } from '../model/types/Article';
 
 interface ArticlesResponse {
@@ -15,9 +14,9 @@ interface ArticlesRequest {
     page: number; 
     limit: number; 
     search: string; 
-    type: ArticleType; 
-    sort: ArticleSortField; 
-    order: SortOrder;
+    type: string; 
+    sort: string;
+    order: string;
     replace: boolean;
 }
 
