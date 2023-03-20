@@ -84,14 +84,14 @@ const ArticlesPage: FC<ArticlePageProps> = (props) => {
     });
 
     const onScrollEnd = useCallback(() => {        
-        if (hasMore && isNextPageExists && nextPage && !!articles?.length) {            
+        if (hasMore && isNextPageExists && nextPage) {            
             dispatch(articlesPageActions.setArticlesPagePage(nextPage));        
             dispatch(
                 articlesPageActions.setArticlesPageHasMore(isNextPageExists)
             );
             dispatch(articlesPageActions.setShouldArticlesReset(false));        
         }
-    }, [hasMore, isNextPageExists, nextPage, articles?.length, dispatch]);
+    }, [hasMore, isNextPageExists, nextPage, dispatch]);
 
     const isLoading = isArticlesLoading || isArticlesFetching;
 

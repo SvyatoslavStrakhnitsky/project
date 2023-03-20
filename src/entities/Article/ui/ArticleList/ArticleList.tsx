@@ -40,7 +40,7 @@ export const ArticleList: FC<ArticleListProps> = (props) => {
         />
     );
 
-    if (!isLoading && !articles?.length) {
+    if (!articles?.length) {
         return (
             <div className={classNames('', {}, [className, cls[view]])}>
                 <Text
@@ -53,7 +53,7 @@ export const ArticleList: FC<ArticleListProps> = (props) => {
 
     return (
         <div className={classNames(cls.articleList, {}, [className, cls[view]])}>
-            {articles?.length
+            {articles?.length && !isLoading
                 ? articles.map(renderArticle)
                 : null}
             {isLoading && getSkeletons(view)}

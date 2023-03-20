@@ -52,7 +52,7 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = (props) => {
     const type = useSelector(getArticlesPageType);
 
     const searchFetch = useCallback((value: string) => {        
-        dispatch(articlesPageActions.setArticlesPageSearch(value));
+        dispatch(articlesPageActions.setArticlesPageSearch(value.trim()));
         onFilterChange();
     }, [dispatch, onFilterChange]);
 

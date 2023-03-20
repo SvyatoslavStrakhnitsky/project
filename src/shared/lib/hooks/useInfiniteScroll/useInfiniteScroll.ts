@@ -4,7 +4,7 @@ export interface UseInfiniteScrollOptions {
     callback?: () => void;
     triggerRef: MutableRefObject<HTMLElement>;
     wrapperRef: MutableRefObject<HTMLElement>;
-    rootMargin?: number;
+    rootMargin?: string;
     threshold?: number;
 }
 
@@ -25,7 +25,7 @@ export const useInfiniteScroll = (args: UseInfiniteScrollOptions) => {
         if (callback) {
             const options = {
                 root: wrapperElement,
-                rootMargin: `${rootMargin || 0}px`,
+                rootMargin: `${rootMargin || '0px'}`,
                 threshold: threshold || 1.0,
             };
 

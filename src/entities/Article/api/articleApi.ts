@@ -57,7 +57,6 @@ export const articleApi = rtkApi.injectEndpoints({
             forceRefetch({ currentArg, previousArg }) {
                 return currentArg !== previousArg;
             },
-
         }),
         articleById: builder.query<Article, {id: string}>({
             query: ({id}) => `/articles/${id}`
