@@ -33,7 +33,7 @@ export const UserCard: FC<UserCardProps> = (props) => {
         onChangeAvatar,
     } = props;
 
-    const { t } = useTranslation('profile');
+    const { t } = useTranslation();
 
     const mods: Mods = {
         [cls.editing]: !readonly,
@@ -59,7 +59,7 @@ export const UserCard: FC<UserCardProps> = (props) => {
                 <Text
                     theme={TextTheme.ERROR}
                     title={t('ProfileCard error')}
-                    text={t('Refresh page', { ns: 'translation' })}
+                    text={t('Refresh page')}
                     textAlign={TextAlign.CENTER}
                 />
             </div>
@@ -77,7 +77,7 @@ export const UserCard: FC<UserCardProps> = (props) => {
                     value={data?.username}
                     onChange={onChangeUsername}
                     readonly={readonly}
-                    placeholder={t('Nick') || ''}
+                    placeholder={'Username'}
                 />
                 <Input
                     className={cls.input}
@@ -85,21 +85,21 @@ export const UserCard: FC<UserCardProps> = (props) => {
                     onChange={onChangeAge}
                     onKeyPress={onKeyPressValidation}
                     readonly={readonly}
-                    placeholder={t('Age') || ''}
+                    placeholder={'Age'}
                 />
                 <Input
                     className={cls.input}
                     value={data?.city}
                     onChange={onChangeCity}
                     readonly={readonly}
-                    placeholder={t('City') || ''}
+                    placeholder={'City'}
                 />
                 <Input
                     className={cls.input}
                     value={data?.avatar}
                     onChange={onChangeAvatar}
                     readonly={readonly}
-                    placeholder={t('Avatar') || ''}
+                    placeholder={'Avatar'}
                 />
             </div>
         </div>

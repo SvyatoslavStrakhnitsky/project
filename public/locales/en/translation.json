@@ -28,5 +28,9 @@
     "Date of creation": "Date of creation",
     "Title": "Title",
     "Ascending": "Ascending",
-    "Descending": "Descending"
+    "Descending": "Descending",
+    "Username": "Username",
+    "Age": "Age",
+    "City": "City",
+    "Avatar": "Avatar"
 }

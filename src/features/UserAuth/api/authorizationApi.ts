@@ -33,5 +33,3 @@ const authorizedApi = rtkApi.injectEndpoints({
 });
 
 export const { useLoginMutation, useLogoutMutation } = authorizedApi;
-
-console.log(authorizedApi);
