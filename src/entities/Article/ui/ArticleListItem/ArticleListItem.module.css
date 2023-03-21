@@ -41,9 +41,7 @@
     margin-bottom: 2em;
 }
 
-
 .small {
-    width: 230px;
     transition: 0.2s linear;
     cursor: pointer;
 }
@@ -65,18 +63,18 @@
 }
 
 .imageWrapper {
-    width: 200px;
+    width: 100%;
     height: 200px;
     position: relative;
 }
 
 .small .img {
-    width: 200px;
+    width: 100%;
     height: 200px;
-    object-fit: cover;
+    border-radius: 12px;
 }
 
-.small   .infoWrapper {
+.small .infoWrapper {
     display: flex;
     align-items: center;
     margin-top: 0.5em;

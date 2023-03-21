@@ -136,8 +136,6 @@ const ArticlesPage: FC<ArticlePageProps> = (props) => {
         }
     }, [hasMore, isNextPageExists, nextPage, dispatch]);
 
-    const isLoading = isArticlesLoading || isArticlesFetching;
-
     return (
         <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount={false}>
             <Page 
@@ -150,7 +148,8 @@ const ArticlesPage: FC<ArticlePageProps> = (props) => {
                     className={cls.list}
                     articles={articles}
                     view={view}
-                    isLoading={isLoading}
+                    isLoading={isArticlesLoading}
+                    isFetching={isArticlesFetching}
                 />
             </Page>
         </DynamicModuleLoader>

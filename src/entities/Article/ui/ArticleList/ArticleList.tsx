@@ -11,11 +11,12 @@ interface ArticleListProps {
     className?: string;
     articles?: Article[];
     isLoading?: boolean;
+    isFetching?: boolean;
     view?: ArticleViewType;
     target?: HTMLAttributeAnchorTarget;
 }
 
-const getSkeletons = (view: ArticleViewType) => new Array(view === 'small' ? 9 : 3)
+const getSkeletons = (view: ArticleViewType) => new Array(view === 'small' ? 10 : 5)
     .fill(0)
     .map((_, idx) => <ArticleListItemSkeleton key={idx} view={view} />);
 
@@ -24,6 +25,7 @@ export const ArticleList: FC<ArticleListProps> = (props) => {
         className,
         articles,
         isLoading,
+        isFetching,
         view = 'big',
         target,
     } = props;
@@ -40,6 +42,14 @@ export const ArticleList: FC<ArticleListProps> = (props) => {
         />
     );
 
+    if (!articles?.length && isLoading) {
+        return (
+            <div className={classNames(cls.articleList, {}, [className, cls[view]])}>
+                {getSkeletons(view)}
+            </div>
+        );  
+    }
+
     if (!articles?.length) {
         return (
             <div className={classNames('', {}, [className, cls[view]])}>
@@ -53,10 +63,10 @@ export const ArticleList: FC<ArticleListProps> = (props) => {
 
     return (
         <div className={classNames(cls.articleList, {}, [className, cls[view]])}>
-            {articles?.length && !isLoading
+            {articles?.length
                 ? articles.map(renderArticle)
                 : null}
-            {isLoading && getSkeletons(view)}
+            {isFetching && getSkeletons(view)}
         </div>
     );
 };

@@ -10,10 +10,7 @@ import { SortOrder } from '@/shared/types';
 import { Card } from '@/shared/ui/Card';
 import { Input } from '@/shared/ui/Input';
 import { FC, useCallback, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useLocation, useSearchParams } from 'react-router-dom';
-
-
 import { articlesPageActions } from '../../model/slice/articlesPage';
 import cls from './ArticlesPageFilters.module.css';
 
@@ -35,7 +32,6 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = (props) => {
         className,
     } = props;
 
-    const {t} = useTranslation();
     const {pathname} = useLocation();
 
     const dispatch = useAppDispatch();

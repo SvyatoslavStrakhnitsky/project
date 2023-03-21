@@ -1,9 +1,10 @@
-.small {
-    display: flex;
-    flex-wrap: wrap;
+.articleList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16em, 1fr));
+    grid-auto-columns: 100px;
     gap: 2em;
 }
 
-.big .card {
-    margin-bottom: 2em;
+.big  {
+    grid-template-columns: repeat(1, minmax(250px, 1fr));
 }
