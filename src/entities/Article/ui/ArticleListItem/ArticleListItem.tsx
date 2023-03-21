@@ -14,6 +14,7 @@ import {
 import { ArticleBlockText } from '../ArticleBlockText/ArticleBlockText';
 import cls from './ArticleListItem.module.css';
 import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
+import { AppRoutes } from '@/app/router/config/config';
 
 interface ArticleListItemProps {
     className?: string;
@@ -90,7 +91,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = (props) => {
                     )}
                     <div className={cls.footer}>
                         <AppLink
-                            to={'/articles/' + article.id}
+                            to={AppRoutes.ARTICLES_DETAILS + article.id}
                             target={target}
                         >
                             <Button>
@@ -106,7 +107,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = (props) => {
 
     return (
         <AppLink
-            to={'/articles/' + article.id}
+            to={AppRoutes.ARTICLES_DETAILS + article.id}
             target={target}
             className={classNames('', {}, [className, cls[view]])}
         >

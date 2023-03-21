@@ -19,6 +19,7 @@ import { userActions } from '@/entities/User';
 import { TOKEN_STORAGE_KEY } from '@/shared/const/localStorage';
 import { TextTheme } from '@/shared/ui/Text/ui/Text';
 import { useNavigate } from 'react-router-dom';
+import { AppRoutes } from '@/app/router/config/config';
 
 export interface LoginFormProps {
     className?: string;
@@ -64,7 +65,7 @@ const LoginForm: FC<LoginFormProps> = (props) => {
             localStorage.setItem(TOKEN_STORAGE_KEY, result.data.token);
             dispatch(userActions.setUserData(result.data.user));
             dispatch(userActions.setAuthData(true));
-            navigate(`/profile/${result.data.user.id}`);
+            navigate(AppRoutes.PROFILE + result.data.user.id);
             onClose?.();
         }
     };

@@ -6,10 +6,11 @@ import cls from './Input.module.css';
 
 interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'> {
     label?: string;
-    value?: string;
+    value?: string | number;
     placeholder?: string;
     className?: string;
     onChange?: (value: string) => void;
+    readonly?: boolean;
 }
 
 export const Input: FC<InputProps> = memo((props) => {
@@ -19,6 +20,7 @@ export const Input: FC<InputProps> = memo((props) => {
         placeholder,
         autoFocus,
         value = '',
+        readonly,
         onChange,
         ...otherProps
     } = props;
@@ -52,6 +54,7 @@ export const Input: FC<InputProps> = memo((props) => {
                 className={classNames(cls.input, {}, [className])} 
                 value={value}
                 onChange={onChangeHandler}
+                readOnly={readonly}
                 {...otherProps}
             />
         </HStack>

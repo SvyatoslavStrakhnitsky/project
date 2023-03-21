@@ -6,6 +6,7 @@ import cls from './CommentCard.module.css';
 import { IComment } from '../../types/Comment';
 import { Avatar } from '@/shared/ui/Avatar/ui/Avatar';
 import { AppLink } from '@/shared/ui/AppLink';
+import { AppRoutes } from '@/app/router/config/config';
 
 interface CommentProps {
     comment?: IComment;
@@ -47,7 +48,7 @@ export const CommentCard: FC<CommentProps> = (props) => {
     return (
         <div className={classNames(cls.commentCard, {}, [className])}>
             <AppLink
-                to={''}
+                to={AppRoutes.PROFILE + comment?.author.id}
                 className={cls.header}
             >
                 {comment?.author?.avatar ? (

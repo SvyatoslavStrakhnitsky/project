@@ -7,10 +7,11 @@ import { Button } from '@/shared/ui/Button';
 import { LoginModal } from '@/features/UserAuth';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { useSelector } from 'react-redux';
-import { checkAuthData, userActions } from '@/entities/User';
+import { checkAuthData, getUserData, userActions } from '@/entities/User';
 import { TOKEN_STORAGE_KEY } from '@/shared/const/localStorage';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useLogoutMutation } from '@/features/UserAuth/api/authorizationApi';
+import { AppRoutes } from '@/app/router/config/config';
 
 interface NavbarProps {
     className?: string;
@@ -27,6 +28,7 @@ export const Navbar: FC<NavbarProps> = ({className}) => {
     const dispatch = useAppDispatch();
 
     const isAuth = useSelector(checkAuthData);
+    const user = useSelector(getUserData);
 
     const [logout, {isSuccess}] = useLogoutMutation();
 
@@ -46,10 +48,14 @@ export const Navbar: FC<NavbarProps> = ({className}) => {
             <nav className={classNames('', {}, [className])}>
                 <HStack gap={16}>
                     <li>
-                        <AppLink to="/">{t('Main')}</AppLink>
+                        <AppLink to={AppRoutes.PROFILE +  user?.id}>
+                            {t('Profile')}
+                        </AppLink>
                     </li>
                     <li>
-                        <AppLink to="/articles">{t('Articles')}</AppLink>
+                        <AppLink to={AppRoutes.ARTICLES}>
+                            {t('Articles')}
+                        </AppLink>
                     </li>
                     <Button theme={'clear'} onClick={handleLogout}>
                         {t('Log out')}
@@ -62,9 +68,6 @@ export const Navbar: FC<NavbarProps> = ({className}) => {
     return (
         <nav className={classNames('', {}, [className])}>
             <HStack gap={16}>
-                <li>
-                    <AppLink to="/">{t('Main')}</AppLink>
-                </li>
                 <li>
                     <Button theme={'clear'} onClick={onOpen}>
                         {t('Sign in')}

@@ -2,15 +2,15 @@ import { AppLayout } from '@/app/layout';
 import { ErrorBoundary } from '@/app/providers/ErrorBoundary';
 import { ArticleDetailsPage } from '@/pages/ArticleDetailsPage';
 import { ArticlesPage } from '@/pages/ArticlesPage';
-import { MainPage } from '@/pages/MainPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
+import { ProfilePage } from '@/pages/ProfilePage';
 import { ProtectedRoute } from '@/shared/lib/components/ProtectedRoute/ProtectedRoute';
 import { createBrowserRouter, type RouteObject } from 'react-router-dom';
 
 export const enum AppRoutes {
-    PROFILE = '/profile/:id',
+    PROFILE = '/profile/',
     ARTICLES = '/articles',
-    ARTICLES_DETAILS = '/articles/:id',
+    ARTICLES_DETAILS = '/articles/',
     NOT_FOUND = '*'
 }
 
@@ -20,8 +20,8 @@ const routeConfig: RouteObject[] = [
         errorElement:<ErrorBoundary />,
         children: [
             {
-                path: AppRoutes.PROFILE,
-                element: <MainPage />,
+                path: AppRoutes.PROFILE + ':id',
+                element: <ProfilePage />,
                 errorElement:<ErrorBoundary />,
 
             },
@@ -34,7 +34,7 @@ const routeConfig: RouteObject[] = [
                 ),
             },
             {
-                path: AppRoutes.ARTICLES_DETAILS,
+                path: AppRoutes.ARTICLES_DETAILS + ':id',
                 element:(  
                     <ProtectedRoute>
                         <ArticleDetailsPage />
