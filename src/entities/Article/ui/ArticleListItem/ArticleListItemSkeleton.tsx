@@ -43,6 +43,7 @@ export const ArticleListItemSkeleton: FC<ArticleListItemSkeletonProps> = (props)
                         className={cls.title}
                     />
                     <Skeleton
+                        width={'100%'}
                         height={200}
                         className={cls.img}
                     />
@@ -62,7 +63,7 @@ export const ArticleListItemSkeleton: FC<ArticleListItemSkeletonProps> = (props)
             <Card>
                 <div className={cls.imageWrapper}>
                     <Skeleton
-                        width={200}
+                        width={'100%'}
                         height={200}
                         className={cls.img}
                     />
