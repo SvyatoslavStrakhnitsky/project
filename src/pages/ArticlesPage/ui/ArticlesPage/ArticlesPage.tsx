@@ -86,6 +86,15 @@ const ArticlesPage: FC<ArticlePageProps> = (props) => {
         return searchParams.get(val) || '';
     }, [searchParams]);
 
+    const queryParams = useMemo(() =>({
+        page,
+        limit,
+        search: getParams(searchParam) ? getParams(searchParam) : `${search}`,
+        type: getParams(typeParam) ? getParams(typeParam) : `${type}`,
+        sort: getParams(sortParam) ? getParams(sortParam) : `${sort}`,
+        order: getParams(orderParam) ? getParams(orderParam) :`${order}`
+    }), [getParams, limit, order, page, search, sort, type]);
+
     useEffect(() => {
         searchParams.set(pageParam, `${page}`);
         searchParams.set(limitParam, `${limit}`);
@@ -104,7 +113,7 @@ const ArticlesPage: FC<ArticlePageProps> = (props) => {
         setSearchParams(searchParams);
     }, [getParams, limit, order, page, search, searchParams, setSearchParams, sort, type]);
 
-    const query = useMemo(() => formArticlesPageQuery(searchParams), [searchParams]);
+    const query =  formArticlesPageQuery(queryParams);
 
     const {
         articles, 
