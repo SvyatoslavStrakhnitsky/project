@@ -1,9 +1,10 @@
 .switcher {
-    height: 40px;
-    width: 40px;
+    display: flex;
+    height: 2em;
+    width: 2em;
 }
 
-svg {
-    height: 40px;
-    width: 40px;
+.btn svg {
+    height: 2.1em;
+    width: 2.1em;
 }

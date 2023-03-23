@@ -5,6 +5,8 @@ import { SortOrder } from '@/shared/types';
 import { Select, SelectOption } from '@/shared/ui/Select';
 import { ArticleSortField } from '../../model/types/Article';
 import cls from './ArticleSortSelector.module.css';
+import { ARTICLES_TYPE_VALUES } from '@/shared/const/articles';
+import { ORDER_TYPES } from '@/shared/const/common';
 
 interface ArticleSortSelectorProps {
     className?: string;
@@ -58,13 +60,14 @@ export const ArticleSortSelector: FC<ArticleSortSelectorProps> = (props) => {
                 options={sortFieldOptions}
                 value={sort}
                 onChange={onChangeSort}
+                translation={ARTICLES_TYPE_VALUES}
             />
             <Select
                 label={t('Order')}
                 options={orderOptions}
                 value={order}
                 onChange={onChangeOrder}
-
+                translation={ORDER_TYPES}
             />
         </div>
     );

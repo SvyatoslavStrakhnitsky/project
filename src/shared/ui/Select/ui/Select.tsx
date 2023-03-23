@@ -1,5 +1,7 @@
-import { ChangeEvent, useMemo } from 'react';
+import { MouseEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { classNames, Mods } from '@/shared/lib/helpers/classNames/classNames';
+import { useOutsideClick } from '@/shared/lib/hooks/useOutsideClick/useOutsideClick';
+import { useTranslation } from 'react-i18next';
 import cls from './Select.module.css';
 
 export interface SelectOption<T extends string> {
@@ -13,6 +15,7 @@ interface SelectProps<T extends string> {
     options?: SelectOption<T>[];
     value?: T;
     readonly?: boolean;
+    translation?: Record<string, string>;
     onChange?: (value: T) => void;
 }
 
@@ -23,40 +26,69 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
         options,
         value,
         readonly,
+        translation,
         onChange,
     } = props;
 
+    const {t} = useTranslation();
+
+    const [open, setOpen] = useState(false);
+    const [selectedValue, setSelectedValue] = useState('');
+
+    useEffect(() => {
+        if (translation) {
+            setSelectedValue(t(translation[value as keyof typeof translation]) || '');
+        }
+    }, [t, value, translation]);
+    
+
     const mods: Mods = {
         [cls.readonly]: readonly,
+        [cls.open]: open
     };
+
+    const handleClose = useCallback(() => setOpen(false), []);
+    const handleOpen = useCallback(() => setOpen(true), []);
+
+    const ref = useOutsideClick(handleClose);
+
+    const onChangeHandler = useCallback((e: MouseEvent<HTMLElement>) => {
+        const element = e.target as HTMLElement;
+        onChange?.(element?.dataset.value as T) ;  
+        setSelectedValue(element?.innerText as T);   
+        handleClose();
+    }, [handleClose, onChange]);
+    
 
     const optionsList = useMemo(() => options?.map(({ value, content }) => (
-        <option
-            key={value}
-            className={cls.option}
-            value={value}
-        >
-            {content}
-        </option>
-    )), [options]);
+        <li key={value} className={cls.item}>
+            <span className={cls.content} data-value={value}>
+                {content}
+            </span> 
+        </li>
 
-    const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-        onChange?.(e.target.value as T);
-    };
+    )), [ options]);
+
 
     return (
-        <div className={classNames(cls.wrapper, mods, [className])}>
+        <div className={classNames('', mods, [className])} ref={ref}>
             {label
-                ? <span className={cls.label}>{`${label}>`}</span>
-                : null}
-            <select
-                className={cls.select}
-                value={value}
-                onChange={onChangeHandler}
-                disabled={readonly}
-            >
-                {optionsList}
-            </select>
+                ? <strong className={cls.label}>
+                    {`${label}:`}
+                </strong>
+                : null
+            }
+            <div className={cls.select}>
+                <button className={cls.button} onClick={handleOpen}>
+                    {selectedValue}
+                </button>
+                <ul 
+                    className={classNames(cls.list, mods)} 
+                    onClick={onChangeHandler}
+                >
+                    {optionsList} 
+                </ul>
+            </div>
         </div>
     );
 };

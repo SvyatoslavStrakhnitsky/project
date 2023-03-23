@@ -4,5 +4,5 @@
     align-items: center;
     height: var(--header-height);
     background-color: var(--inverted-bg-color);
-    padding: 1em;
+    padding: 1em 1em 1em 0.5em;
 }

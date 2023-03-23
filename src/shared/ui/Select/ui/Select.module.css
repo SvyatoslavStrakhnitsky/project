@@ -1,22 +1,64 @@
-.wrapper {
-    display: flex;
+.select {
+    min-width: 10em;
+    outline: none;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 6px;
+    position: relative;
 }
 
 .label {
-    margin-right: 0.4em;
+    display: block;
+    margin-bottom: 0.2em;
 }
 
-.select {
-    background: none;
-    outline: none;
+.button {
+    font-weight: 600;
     color: var(--primary-color);
-    padding: 2px 0.6em 2px 2px;
-    border: 1px solid var(--primary-color);
+    width: 100%;
+    background-color: var(--bg-color);
+    border-radius: 6px;
+    border: none;
+    padding: 0.5em;
 }
 
-.option {
-    color: var(--inverted-primary-color);
-    background: var(--inverted-bg-color);
+.list {
+    visibility: hidden;
+    width: calc(100% + 2px);
+    border: 2px solid black;
+    position: absolute;
+    background-color: var(--inverted-bg-color);
+    border-radius: 6px;
+    margin-top: 0.3em;
+}
+
+.list.open {
+    visibility: visible
+} 
+
+.item:not(:last-child) {
+    border-bottom: 1px solid var(--bg-color);
+}
+
+.content {
+    display: block;
+    padding: 0.5em;
+    color: var(--inverted-primary-color)
+}
+
+.content:hover {
+    display: block;
+    padding: 0.5em;
+    color: var(--primary-color);
+    background-color: var(--bg-color);
+}
+
+.list :first-child :hover {
+    border-radius: 4px 4px 0 0;
+}
+
+.list :last-child :hover {
+    border-radius: 0 0 4px 4px;
 }
 
 .readonly {

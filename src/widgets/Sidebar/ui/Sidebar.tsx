@@ -3,6 +3,7 @@ import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import { Button } from '@/shared/ui/Button';
 import DoubleArrowLeft from '@/shared/assets/icons/double-arrow-left.svg';
 import DoubleArrowRight from '@/shared/assets/icons/double-arrow-right.svg';
+import { Icon } from '@/shared/ui/Icon';
 import cls from './Sidebar.module.css';
 
 interface SidebarProps {
@@ -28,7 +29,10 @@ export const Sidebar: FC<SidebarProps> = (props) => {
                 onClick={onSidebarToggle}
                 theme={'clear'}
             >
-                {collapsed ? <DoubleArrowRight /> : <DoubleArrowLeft />}
+                {collapsed 
+                    ? <Icon Svg={DoubleArrowRight}/>  
+                    : <Icon Svg={DoubleArrowLeft}/>
+                }
             </Button>
         </div>
     );

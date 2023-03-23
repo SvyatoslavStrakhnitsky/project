@@ -1,0 +1,13 @@
+.langSwitcher {
+    display: flex;
+}
+
+.langSwitcher svg path:first-child {
+    fill: var(--bg-color);
+}
+
+.btn svg {
+    display: flex;
+    height: 2em;
+    width: 2em;
+}
