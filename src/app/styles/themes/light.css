@@ -1,11 +1,12 @@
 .app_light_theme {
     --primary-color: rgb(46, 30, 182);
     --inverted-primary-color: rgb(222, 173, 219);
-    --secondary-color: rgb(60, 56, 99);
+    --secondary-color: rgb(162, 152, 252);
     --bg-color: rgb(222, 173, 219);
     --inverted-bg-color: rgb(46, 30, 182);
+    --color-hover: rgb(210, 206, 253);
 
-    /* Skeleton */
+    /* Skeleton */;
 
     --skeleton-color: #fff;
     --skeleton-shadow: rgba(0, 0, 0, , 20%);

@@ -1,11 +1,12 @@
 .app_dark_theme {
     --primary-color: rgb(0, 0, 0);
     --inverted-primary-color: rgb(228,143,19);
-    --secondary-color: rgb(187, 122, 183);
+    --secondary-color: rgb(241, 177, 81);
     --bg-color: rgb(228,143,19);
     --inverted-bg-color: rgb(0, 0, 0);
+    --color-hover: rgb(241, 199, 137);
 
-    /* Skeleton */
+    /* Skeleton */;
 
     --skeleton-color: #fff;
     --skeleton-shadow: rgba(0, 0, 0 , 20%);

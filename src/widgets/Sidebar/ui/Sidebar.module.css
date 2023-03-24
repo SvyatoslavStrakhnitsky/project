@@ -7,8 +7,10 @@
     position: relative;
 }
 
-.sidebar svg {
-    fill: var(--bg-color)
+.sidebar svg,
+.sidebar path {
+    fill: var(--bg-color);
+    stroke: var(--bg-color);
 }
 
 .collapsed {
@@ -17,14 +19,15 @@
 
 .btnCollapse {
     position: absolute;
-    right: 0.5em;
-    bottom: 0.5em;
-    border: 1px solid var(--bg-color);
+    right: 0.35em;
+    bottom: 0.35em;
+    border: 2px solid var(--bg-color);
     border-radius: 6px;
+    padding: 0.35em;
 }
 
 .btnCollapse svg {
     display: flex;
-    width: 2em;
-    height: 2em;
+    width: 1.5em;
+    height: 1.5em;
 }

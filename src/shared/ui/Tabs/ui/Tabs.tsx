@@ -1,8 +1,7 @@
 import {
     FC, memo, ReactNode, useCallback,
 } from 'react';
-import { classNames } from '@/shared/lib/helpers/classNames/classNames';
-import { Card, CardTheme } from '@/shared/ui/Card';
+import { classNames, Mods } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './Tabs.module.css';
 
 export interface TabItem {
@@ -31,17 +30,22 @@ export const Tabs: FC<TabsProps> = memo((props) => {
 
     return (
         <div className={classNames(cls.tabs, {}, [className])}>
-            {tabs.map((tab) => (
-                <Card
-                    key={tab.value}
-                    theme={tab.value === value
-                        ? CardTheme.NORMAL
-                        : CardTheme.OUTLINE}
-                    onClick={onTabClickHandler(tab)}
-                >
-                    {tab.content}
-                </Card>
-            ))}
+            {tabs.map((tab) => {
+                const mods: Mods = {
+                    [cls.normal]: tab.value === value,
+                    [cls.outline]: tab.value !== value,
+                };
+
+                return  (
+                    <div
+                        key={tab.value}
+                        onClick={onTabClickHandler(tab)}
+                        className={classNames('', mods)}
+                    >
+                        {tab.content}
+                    </div>
+                );
+            })}
         </div>
-    );
+    ); 
 });

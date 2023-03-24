@@ -1,10 +1,15 @@
 .select {
-    min-width: 10em;
+    display: flex;
+    min-width: 9em;
     outline: none;
     color: var(--primary-color);
     border: 2px solid var(--primary-color);
     border-radius: 6px;
     position: relative;
+}
+
+.select ::-webkit-scrollbar {
+    display: none;
 }
 
 .label {
@@ -16,20 +21,29 @@
     font-weight: 600;
     color: var(--primary-color);
     width: 100%;
-    background-color: var(--bg-color);
-    border-radius: 6px;
+    background-color: var(--secondary-color);
+    border-radius: 4px;
     border: none;
     padding: 0.5em;
+    transition: 0.5s background-color;
+}
+
+.button:hover {
+    background-color: var(--color-hover);
 }
 
 .list {
+    max-height: 200px;
     visibility: hidden;
     width: calc(100% + 2px);
     border: 2px solid black;
     position: absolute;
     background-color: var(--inverted-bg-color);
     border-radius: 6px;
-    margin-top: 0.3em;
+    margin-top: 2.1em;
+    z-index: var(--select-z-index);
+    overflow-y: scroll;
+    cursor: pointer;
 }
 
 .list.open {
@@ -43,7 +57,10 @@
 .content {
     display: block;
     padding: 0.5em;
-    color: var(--inverted-primary-color)
+    color: var(--inverted-primary-color);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .content:hover {

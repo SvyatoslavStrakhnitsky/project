@@ -1,8 +1,20 @@
 .input {
-    height: 2em;
+    font-weight: 500;
+    height: 3em;
+    width: 100%;
     color: var(--primary-color);
-    border: none;
+    border: 2px solid var(--inverted-bg-color);
+    background-color: var(--secondary-color);
     border-radius: 5px;
-    outline-color: var(--primary-color);
+    outline: none;
     padding: 0.5em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.input::placeholder {
+    color: var(--primary-color);
+    opacity: 0.8;
+    font-style: italic;
 }
