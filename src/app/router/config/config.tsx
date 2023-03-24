@@ -17,29 +17,26 @@ export const enum AppRoutes {
 const routeConfig: RouteObject[] = [
     {
         element: <AppLayout />,
-        errorElement:<ErrorBoundary />,
+        errorElement: <ErrorBoundary />,
         children: [
             {
                 path: AppRoutes.PROFILE + ':id',
-                element: <ProfilePage />,
+                element: (
+                    <ProtectedRoute>
+                        <ProfilePage />
+                    </ProtectedRoute>
+                ),
                 errorElement:<ErrorBoundary />,
-
             },
             {
                 path: AppRoutes.ARTICLES,
                 element:(  
-                    <ProtectedRoute>
-                        <ArticlesPage />
-                    </ProtectedRoute>
+                    <ArticlesPage />
                 ),
             },
             {
                 path: AppRoutes.ARTICLES_DETAILS + ':id',
-                element:(  
-                    <ProtectedRoute>
-                        <ArticleDetailsPage />
-                    </ProtectedRoute>
-                ),
+                element: <ArticleDetailsPage />
             },
             {
                 path: AppRoutes.NOT_FOUND,

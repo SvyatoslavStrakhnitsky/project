@@ -1,17 +1,15 @@
-import { useTranslation } from 'react-i18next';
-import { AppLink } from '@/shared/ui/AppLink';
-import { classNames } from '@/shared/lib/helpers/classNames/classNames';
-import { HStack } from '@/shared/ui/Stack';
-import{ FC, useEffect } from 'react';
-import { Button } from '@/shared/ui/Button';
-import { LoginModal } from '@/features/UserAuth';
-import { useModal } from '@/shared/lib/hooks/useModal/useModal';
-import { useSelector } from 'react-redux';
 import { checkAuthData, getUserData, userActions } from '@/entities/User';
-import { TOKEN_STORAGE_KEY } from '@/shared/const/localStorage';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { LoginModal } from '@/features/UserAuth';
 import { useLogoutMutation } from '@/features/UserAuth/api/authorizationApi';
-import { AppRoutes } from '@/app/router/config/config';
+import { TOKEN_STORAGE_KEY } from '@/shared/const/localStorage';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useModal } from '@/shared/lib/hooks/useModal/useModal';
+import { Button } from '@/shared/ui/Button';
+import { HStack } from '@/shared/ui/Stack';
+import { FC, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 interface NavbarProps {
     className?: string;
@@ -40,6 +38,7 @@ export const Navbar: FC<NavbarProps> = ({className}) => {
         if (isSuccess) {            
             localStorage.removeItem(TOKEN_STORAGE_KEY);
             dispatch(userActions.setAuthData(false));
+            dispatch(userActions.setUserData(undefined));
         }
     }, [isSuccess, dispatch]);
 
@@ -47,16 +46,6 @@ export const Navbar: FC<NavbarProps> = ({className}) => {
         return    (
             <nav className={classNames('', {}, [className])}>
                 <HStack gap={16}>
-                    <li>
-                        <AppLink to={AppRoutes.PROFILE +  user?.id}>
-                            {t('Profile')}
-                        </AppLink>
-                    </li>
-                    <li>
-                        <AppLink to={AppRoutes.ARTICLES}>
-                            {t('Articles')}
-                        </AppLink>
-                    </li>
                     <Button theme={'clear'} onClick={handleLogout}>
                         {t('Log out')}
                     </Button>

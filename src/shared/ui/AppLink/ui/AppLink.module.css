@@ -1,15 +1,15 @@
 .link:hover {
-    opacity: 0.8;
+    color: var(--color-hover);
 }
 
 .active {
-    color: rgb(137, 50, 50);
+    color: var(--secondary-color);
 }
 
 .primary {
-    color: rgb(57, 127, 20);
+    color: var(--inverted-primary-color);
 }
 
 .secondary {
-    color: rgb(217, 82, 58);
+    color: rgb(219, 66, 66);
 }

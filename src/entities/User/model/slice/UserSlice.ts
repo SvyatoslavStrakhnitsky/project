@@ -1,5 +1,5 @@
-import { IUser } from '../types/User';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IUser } from '../types/User';
 import { UserSchema } from '../types/UserSchema';
 
 const initialState: UserSchema = {
@@ -13,7 +13,7 @@ const userSlice = createSlice({
         setAuthData: (state, action: PayloadAction<boolean>) => {
             state.isAuth = action.payload;
         },
-        setUserData: (state, action: PayloadAction<IUser>) => {            
+        setUserData: (state, action: PayloadAction<IUser| undefined>) => {            
             state.data = action.payload;            
         },
     }

@@ -9,7 +9,7 @@ export const buildDevServer = (
     return {
         port,
         hot: true,
-        open: true,
+        open: ['/articles'],
         historyApiFallback: true,
     };
 };

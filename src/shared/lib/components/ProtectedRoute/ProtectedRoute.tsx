@@ -1,3 +1,4 @@
+import { AppRoutes } from '@/app/router/config/config';
 import { checkAuthData } from '@/entities/User';
 import { FC, ReactNode } from 'react';
 import { useSelector } from 'react-redux';
@@ -13,7 +14,7 @@ export const ProtectedRoute: FC<ProtectedRouteProps> = ({ children }) => {
     const isAuth = useSelector(checkAuthData);
 
     if (!isAuth) {
-        return <Navigate to="/" replace />;
+        return <Navigate to={AppRoutes.ARTICLES} replace />;
     }
 
     return (

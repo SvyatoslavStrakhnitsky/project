@@ -26,6 +26,16 @@
     padding: 0.35em;
 }
 
+.btnCollapse:hover {
+    border: 2px solid var(--color-hover);
+}
+
+.btnCollapse:hover svg,
+.btnCollapse:hover path {
+    fill: var(--color-hover);
+    stroke: var(--color-hover);
+}
+
 .btnCollapse svg {
     display: flex;
     width: 1.5em;
