@@ -7,22 +7,29 @@
     color: var(--inverted-primary-color);
 }
 
-.item:hover {
+.item:hover path {
     color: var(--color-hover);
+    transform: scale(1.03);
 }
 
 .item.active {
     color: var(--secondary-color);
 }
 
+.item.active path {
+    fill: var(--secondary-color);
+}
+
 .link {
     margin-left: 10px;
     opacity: 1;
+    transition: opacity 0.5s;
 }
 
 .icon {
-    width: 2em;
-    height: 2em;
+    width: 1.5em;
+    height:  1.5em;
+    flex-shrink: 0;
 }
 
 .collapsed .link {

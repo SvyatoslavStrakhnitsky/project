@@ -1,0 +1,44 @@
+.userCardHeader button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.2em;
+    border-radius: 6px;
+    background-color: var(--inverted-bg-color);
+    transition: 0.2s transform, 0.2s box-shadow;
+}
+
+.userCardHeader button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 2px var(--inverted-bg-color);
+}
+
+.userCardHeader .edit,
+.userCardHeader .cancel, 
+.userCardHeader .accept {
+    width: 2em;
+    height: 2em;
+    fill: var(--inverted-bg-color);
+}
+
+.userCardHeader .edit path,
+.userCardHeader .cancel path,
+.userCardHeader .accept path {
+    stroke: var(--bg-color);
+}
+
+.userCardHeader .cancel {
+    stroke-width: 2px;
+}
+
+.btn:hover .edit path {
+    stroke: var(--secondary-color);
+}
+
+.btn:hover .cancel path {
+    stroke: var(--cancel-color);
+}
+
+.btn:hover .accept path {
+    stroke: var(--accept-color);
+}

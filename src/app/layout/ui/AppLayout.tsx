@@ -21,6 +21,7 @@ export const AppLayout = () => {
         
         if (user) {
             dispatch(userActions.setUserData(user));
+            dispatch(userActions.updateProfileData(user));
         }
 
     }, [dispatch, token, user]);

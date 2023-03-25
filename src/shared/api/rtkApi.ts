@@ -46,7 +46,14 @@ export const rtkApi = createApi({
         getMe: builder.query<IUser, void>({
             query: () => '/me'
         }),
+        profileUpdate: builder.mutation<IUser, IUser>({
+            query: (body) =>({
+                url: '/profile/update',
+                body,
+                method: 'PUT',
+            })
+        }),
     }),
 });
 
-export const {useGetMeQuery} = rtkApi;
+export const {useGetMeQuery, useProfileUpdateMutation} = rtkApi;

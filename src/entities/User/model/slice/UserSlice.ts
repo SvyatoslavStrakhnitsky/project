@@ -4,6 +4,9 @@ import { UserSchema } from '../types/UserSchema';
 
 const initialState: UserSchema = {
     isAuth: false,
+    readonly: true,
+    data: undefined,
+    editData: undefined
 };
 
 const userSlice = createSlice({
@@ -15,7 +18,26 @@ const userSlice = createSlice({
         },
         setUserData: (state, action: PayloadAction<IUser| undefined>) => {            
             state.data = action.payload;            
+            state.editData = action.payload;            
         },
+        setReadonly:  (state, action: PayloadAction<boolean>) => {
+            state.readonly = action.payload;
+        },
+        updateProfileData: (state, action: PayloadAction<IUser>) => {
+            state.editData = {
+                ...state.data,
+                ...action.payload
+            };
+        },
+        cancelEdit:  (state) => {
+            state.readonly = true;
+            state.editData = state.data;
+        },
+        acceptUpdatingProfile:  (state) => {
+            state.readonly = true;
+            state.data = state.editData;
+        },
+
     }
 });
 

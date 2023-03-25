@@ -1,12 +1,14 @@
-import { FC, KeyboardEvent } from 'react';
-import { useTranslation } from 'react-i18next';
 import { classNames, Mods } from '@/shared/lib/helpers/classNames/classNames';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Input } from '@/shared/ui/Input';
 import { Loader } from '@/shared/ui/Loader';
+import { HStack } from '@/shared/ui/Stack';
 import { Text, TextAlign, TextTheme } from '@/shared/ui/Text';
-import cls from './UserCard.module.css';
+import { FC, KeyboardEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 import { IUser } from '../../model/types/User';
+import { UserCardHeader } from '../UserCardHeader/UserCardHeader';
+import cls from './UserCard.module.css';
 
 interface UserCardProps {
     className?: string;
@@ -18,6 +20,7 @@ interface UserCardProps {
     onChangeCity?: (value?: string) => void;
     onChangeUsername?: (value?: string) => void;
     onChangeAvatar?: (value?: string) => void;
+    canEdit?: boolean;
 }
 
 export const UserCard: FC<UserCardProps> = (props) => {
@@ -31,12 +34,13 @@ export const UserCard: FC<UserCardProps> = (props) => {
         onChangeCity,
         onChangeUsername,
         onChangeAvatar,
+        canEdit = false,
     } = props;
 
     const { t } = useTranslation();
 
     const mods: Mods = {
-        [cls.editing]: !readonly,
+        [cls.isEdit]: !readonly
     };
 
     const onKeyPressValidation = (e: KeyboardEvent) => {
@@ -67,41 +71,44 @@ export const UserCard: FC<UserCardProps> = (props) => {
     }
 
     return (
-        <div className={classNames(cls.profileCard, mods, [className])}>
-            <div className={cls.data}>
-                <div className={cls.avatarWrapper}>
-                    {data?.avatar && <Avatar src={data.avatar} alt="" />}
-                </div>
-                <Input
-                    className={cls.input}
-                    value={data?.username}
-                    onChange={onChangeUsername}
-                    readonly={readonly}
-                    placeholder={'Username'}
-                />
-                <Input
-                    className={cls.input}
-                    value={data?.age}
-                    onChange={onChangeAge}
-                    onKeyPress={onKeyPressValidation}
-                    readonly={readonly}
-                    placeholder={'Age'}
-                />
-                <Input
-                    className={cls.input}
-                    value={data?.city}
-                    onChange={onChangeCity}
-                    readonly={readonly}
-                    placeholder={'City'}
-                />
-                <Input
-                    className={cls.input}
-                    value={data?.avatar}
-                    onChange={onChangeAvatar}
-                    readonly={readonly}
-                    placeholder={'Avatar'}
-                />
-            </div>
+        <div className={classNames(cls.userCard, mods, [className])}>
+            {canEdit && <UserCardHeader 
+                data={data}
+                readonly={readonly}
+            />}
+            <HStack justify='center'>
+                {data?.avatar && <Avatar src={data.avatar} alt="" />}
+            </HStack>
+            <Input
+                className={cls.input}
+                value={data?.username}
+                onChange={onChangeUsername}
+                readonly={readonly}
+                placeholder={'Username'}
+                autoFocus={!readonly}
+            />
+            <Input
+                className={cls.input}
+                value={data?.age || ''}
+                onChange={onChangeAge}
+                onKeyPress={onKeyPressValidation}
+                readonly={readonly}
+                placeholder={'Age'}
+            />
+            <Input
+                className={cls.input}
+                value={data?.city}
+                onChange={onChangeCity}
+                readonly={readonly}
+                placeholder={'City'}
+            />
+            <Input
+                className={cls.input}
+                value={data?.avatar}
+                onChange={onChangeAvatar}
+                readonly={readonly}
+                placeholder={'Avatar'}
+            />
         </div>
     );
 };

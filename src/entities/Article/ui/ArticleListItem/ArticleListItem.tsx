@@ -15,6 +15,7 @@ import { ArticleBlockText } from '../ArticleBlockText/ArticleBlockText';
 import cls from './ArticleListItem.module.css';
 import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
 import { AppRoutes } from '@/app/router/config/config';
+import { HStack } from '@/shared/ui/Stack';
 
 interface ArticleListItemProps {
     className?: string;
@@ -58,7 +59,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = (props) => {
         return (
             <div className={classNames('', {}, [className, cls[view]])}>
                 <Card>
-                    <div className={cls.header}>
+                    <HStack align='center'>
                         <Avatar
                             size={30}
                             src={article.author?.avatar}
@@ -72,7 +73,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = (props) => {
                             text={formatDate(article?.createdAt)}
                             className={cls.date}
                         />
-                    </div>
+                    </HStack>
                     <Text
                         text={article.title}
                         className={cls.title}
@@ -89,7 +90,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = (props) => {
                             className={cls.textBlock}
                         />
                     )}
-                    <div className={cls.footer}>
+                    <HStack align='center' gap={8}>
                         <AppLink
                             to={AppRoutes.ARTICLES_DETAILS + article.id}
                             target={target}
@@ -99,7 +100,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = (props) => {
                             </Button>
                         </AppLink>
                         {views}
-                    </div>
+                    </HStack>
                 </Card>
             </div>
         );
@@ -109,7 +110,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = (props) => {
         <AppLink
             to={AppRoutes.ARTICLES_DETAILS + article.id}
             target={target}
-            className={classNames('', {}, [className, cls[view]])}
+            className={classNames(cls.card, {}, [className, cls[view]])}
         >
             <Card>
                 <div className={cls.imageWrapper}>

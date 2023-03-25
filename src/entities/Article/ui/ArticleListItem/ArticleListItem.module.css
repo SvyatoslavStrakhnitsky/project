@@ -1,10 +1,10 @@
-.big .views {
-    margin-left: auto;
+.card {
+    box-shadow: 0 0 10px var(--inverted-bg-color);
+    border-radius: 6px;
 }
 
-.big .header {
-    display: flex;
-    align-items: center;
+.big .views {
+    margin-left: auto;
 }
 
 .big .username {
@@ -26,11 +26,6 @@
     margin: 1em 0;
 }
 
-.big .footer {
-    display: flex;
-    align-items: center;
-}
-
 .big .textBlock {
     max-height: 200px;
     overflow-y: hidden;
@@ -42,6 +37,7 @@
 }
 
 .small {
+    border-radius: 20px;
     transition: 0.2s linear;
     cursor: pointer;
 }

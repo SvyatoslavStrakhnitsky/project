@@ -27,5 +27,7 @@
     --error-light: rgb(255, 24, 24);
     --code-bg: rgb(49, 172, 133);
     --card-bg: rgb(178, 21, 100);
+    --cancel-color: rgb(178, 21, 100);
+    --accept-color: rgb(49, 172, 133);
 
 }

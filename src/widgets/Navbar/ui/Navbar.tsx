@@ -1,4 +1,4 @@
-import { checkAuthData, getUserData, userActions } from '@/entities/User';
+import { checkAuthData, userActions } from '@/entities/User';
 import { LoginModal } from '@/features/UserAuth';
 import { useLogoutMutation } from '@/features/UserAuth/api/authorizationApi';
 import { TOKEN_STORAGE_KEY } from '@/shared/const/localStorage';
@@ -26,7 +26,6 @@ export const Navbar: FC<NavbarProps> = ({className}) => {
     const dispatch = useAppDispatch();
 
     const isAuth = useSelector(checkAuthData);
-    const user = useSelector(getUserData);
 
     const [logout, {isSuccess}] = useLogoutMutation();
 
@@ -46,7 +45,10 @@ export const Navbar: FC<NavbarProps> = ({className}) => {
         return    (
             <nav className={classNames('', {}, [className])}>
                 <HStack gap={16}>
-                    <Button theme={'clear'} onClick={handleLogout}>
+                    <Button 
+                        theme={'primary'} 
+                        onClick={handleLogout}
+                    >
                         {t('Log out')}
                     </Button>
                 </HStack>
@@ -58,7 +60,10 @@ export const Navbar: FC<NavbarProps> = ({className}) => {
         <nav className={classNames('', {}, [className])}>
             <HStack gap={16}>
                 <li>
-                    <Button theme={'clear'} onClick={onOpen}>
+                    <Button 
+                        theme={'primary'}
+                        onClick={onOpen}
+                    >
                         {t('Sign in')}
                     </Button>
                 </li>

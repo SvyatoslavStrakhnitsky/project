@@ -1,8 +1,8 @@
 .sidebar {
-    width: 300px;
+    width: 200px;
     height: calc(100vh - var(--header-height));
     background-color: var(--inverted-bg-color);
-    padding: 1em;
+    padding: 0.8em;
     transition: width 0.5s;
     position: relative;
 }
@@ -30,14 +30,14 @@
     border: 2px solid var(--color-hover);
 }
 
-.btnCollapse:hover svg,
-.btnCollapse:hover path {
-    fill: var(--color-hover);
-    stroke: var(--color-hover);
-}
-
 .btnCollapse svg {
     display: flex;
     width: 1.5em;
     height: 1.5em;
+}
+
+.btnCollapse:hover svg,
+.btnCollapse:hover path {
+    fill: var(--color-hover);
+    stroke: var(--color-hover);
 }

@@ -1,6 +1,11 @@
 .button {
     padding: 0.5em;
     border: none;
+    transition: 0.3s color;
+}
+
+.button:hover {
+    color: var(--secondary-color)
 }
 
 .clear {
@@ -13,6 +18,12 @@
     color: var(--bg-color);
     background-color: var(--primary-color);
     border-radius: 5px;
+    padding: 0.5em 2em;
+    border: 2px solid var(--bg-color)
+}
+
+.primary:hover {
+    border: 2px solid var(--secondary-color)
 }
 
 .disabled {
