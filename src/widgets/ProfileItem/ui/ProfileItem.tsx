@@ -30,7 +30,7 @@ export const ProfileItem: FC<ProfileItemProps> = (props) => {
     }, [dispatch]);
 
     const onChangeAvatar = useCallback((value?: string) => {
-        dispatch(userActions.updateProfileData({city: value || ''}));
+        dispatch(userActions.updateProfileData({avatar: value || ''}));
     }, [dispatch]);
 
     return (

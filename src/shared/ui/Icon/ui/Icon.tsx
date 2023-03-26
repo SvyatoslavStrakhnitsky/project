@@ -13,5 +13,5 @@ export const Icon: FC<IconProps> = (props) => {
         className,
     } = props;
 
-    return <Svg className={classNames(cls.icon, {}, [className])} />;
+    return <Svg className={classNames(cls.icon, {}, [className])}/>;
 };

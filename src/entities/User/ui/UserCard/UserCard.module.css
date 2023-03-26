@@ -17,3 +17,12 @@
 .isEdit {
     box-shadow: 0 0 10px var(--inverted-bg-color);
 }
+
+.avatar {
+    width: 100px;
+    height: 100px;
+}
+
+.avatar svg {
+    display: flex;
+}

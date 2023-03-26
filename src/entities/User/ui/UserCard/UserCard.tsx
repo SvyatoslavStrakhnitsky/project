@@ -106,7 +106,11 @@ export const UserCard: FC<UserCardProps> = (props) => {
                 isError={isError}
             />}
             <HStack justify='center'>
-                {data?.avatar && <Avatar src={data.avatar} alt="" />}
+                {data?.avatar && (
+                    <div className={cls.avatar}>
+                        <Avatar src={data.avatar} alt="" />
+                    </div>
+                )}
             </HStack>
             <Input
                 className={cls.input}

@@ -54,7 +54,7 @@ export const CommentCard: FC<CommentProps> = (props) => {
                 {comment?.author?.avatar ? (
                     <Avatar
                         size={30}
-                        src={comment?.author.avatar}
+                        src={comment?.author.avatar}   
                     />
                 ) : null }
                 <Text
