@@ -34,5 +34,10 @@
     "City": "City",
     "Avatar": "Avatar",
     "Edit": "Edit",
-    "Cancel": "Cancel"
+    "Cancel": "Cancel",
+    "IsEmpty Error": "The field is required",
+    "MinLength": "Minimal length is {{int}} character",
+    "MaxLength": "Maximum length is {{int}} character",
+    "Max": "Maximum value is {{int}}",
+    "Min": "Maximum value is {{int}}"
 }

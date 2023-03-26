@@ -1,3 +1,8 @@
+.inputWrapper {
+    position: relative;
+    width: 100%;
+}
+
 .input {
     font-weight: 500;
     height: 3em;
@@ -17,4 +22,27 @@
     color: var(--primary-color);
     opacity: 0.8;
     font-style: italic;
+}
+
+.error {
+    font: var(--font-s);
+    font-weight: 600;
+    position: absolute;
+    left: 0.7em;
+    padding: 0.2em 0.5em;
+    background-color: #fff;
+    color: var(--error-dark);
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateY(1em);
+    transition: opacity 0.5s, transform 0.3s;
+    max-width: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.showError {
+    opacity: 1;
+    transform: translateY(-0.7em);
 }

@@ -20,6 +20,7 @@ export const Button: FC<ButtonProps> = (props) => {
         <button
             type={'button'}
             className={classNames(cls.button, mods, [className, cls[theme]])}
+            disabled={disabled}
             {...otherProps}
         >
             {children}

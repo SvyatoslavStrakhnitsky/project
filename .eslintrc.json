@@ -41,6 +41,7 @@
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "error",
         "quotes": ["error", "single"],
-        "unused-imports/no-unused-imports": "error"
+        "unused-imports/no-unused-imports": "error",
+        "@typescript-eslint/ban-ts-comment": "off"
     }
 }

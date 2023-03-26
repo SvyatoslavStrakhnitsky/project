@@ -6,7 +6,7 @@ const initialState: UserSchema = {
     isAuth: false,
     readonly: true,
     data: undefined,
-    editData: undefined
+    editData: undefined,
 };
 
 const userSlice = createSlice({
@@ -37,7 +37,6 @@ const userSlice = createSlice({
             state.readonly = true;
             state.data = state.editData;
         },
-
     }
 });
 

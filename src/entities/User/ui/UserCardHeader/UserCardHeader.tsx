@@ -16,6 +16,7 @@ interface UserCardHeaderProps {
     readonly?: boolean;
     data?: IUser;
     className?: string;
+    isError: boolean;
 }
 
 export const UserCardHeader: FC<UserCardHeaderProps> = (props) => {
@@ -23,6 +24,7 @@ export const UserCardHeader: FC<UserCardHeaderProps> = (props) => {
         className,
         data,
         readonly = false,
+        isError = false,
     } = props;
 
     const dispatch = useAppDispatch();
@@ -61,6 +63,7 @@ export const UserCardHeader: FC<UserCardHeaderProps> = (props) => {
                         <Button 
                             theme='clear' className={cls.btn}
                             onClick={handleEdit}
+                            disabled={isError}
                         >
                             <Icon Svg={AcceptIcon} className={cls.accept}/>
                         </Button>

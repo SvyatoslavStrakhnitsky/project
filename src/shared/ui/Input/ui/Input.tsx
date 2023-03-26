@@ -1,5 +1,7 @@
-import { classNames } from '@/shared/lib/helpers/classNames/classNames';
-import { ChangeEvent, FC, InputHTMLAttributes, memo, useEffect, useRef } from 'react';
+import { classNames, Mods } from '@/shared/lib/helpers/classNames/classNames';
+import { useInput } from '@/shared/lib/hooks/useInput/useInput';
+import { InputValidations } from '@/shared/lib/hooks/useValidation/useValidation';
+import { InputHTMLAttributes, memo, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HStack } from '../../Stack';
 import cls from './Input.module.css';
@@ -11,9 +13,11 @@ interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value'
     className?: string;
     onChange?: (value: string) => void;
     readonly?: boolean;
+    validations?: InputValidations[];
+    onErrorHandler?: (value: boolean) => void;
 }
 
-export const Input: FC<InputProps> = memo((props) => {
+export const Input = memo((props: InputProps) => {
     const {
         className,
         label,
@@ -21,6 +25,8 @@ export const Input: FC<InputProps> = memo((props) => {
         autoFocus,
         value = '',
         readonly,
+        validations,
+        onErrorHandler,
         onChange,
         ...otherProps
     } = props;
@@ -34,8 +40,23 @@ export const Input: FC<InputProps> = memo((props) => {
         }
     }, [autoFocus]);
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        onChange?.(e.target.value);
+    const {
+        error, 
+        isDirty,
+        onChangeHandler,
+        onBlurHandler
+    } = useInput({
+        value,
+        onChange,
+        validations
+    });
+
+    useEffect(() => {
+        onErrorHandler?.(error.isError);
+    }, [error.isError, onErrorHandler]);
+
+    const mods: Mods = {
+        [cls.showError]: error?.isError && isDirty,
     };
 
     const localePlaceholder = placeholder ? t(placeholder) : '';
@@ -47,16 +68,22 @@ export const Input: FC<InputProps> = memo((props) => {
             className={classNames('', {}, [className])}
         >
             {label &&  <label>{t(label)}:</label>}
-            <input 
-                ref={inputRef}
-                type="text" 
-                placeholder={localePlaceholder} 
-                className={classNames(cls.input, {}, [className])} 
-                value={value}
-                onChange={onChangeHandler}
-                readOnly={readonly}
-                {...otherProps}
-            />
+            <div className={cls.inputWrapper}>
+                <span className={classNames(cls.error, mods)}>
+                    {error?.message}
+                </span>
+                <input 
+                    ref={inputRef}
+                    type="text" 
+                    placeholder={localePlaceholder} 
+                    className={classNames(cls.input, {}, [className])} 
+                    value={value}
+                    onChange={onChangeHandler}
+                    onBlur={onBlurHandler}
+                    readOnly={readonly}
+                    {...otherProps}
+                />           
+            </div>
         </HStack>
     );
 });
