@@ -1,13 +1,13 @@
 import { InputValidations, useValidation } from '@/shared/lib/hooks/useValidation/useValidation';
 import { ChangeEvent, useState } from 'react';
 
-interface useInputOptions<T>  {
+interface useInputOptions  {
     validations?: InputValidations[];
     value: string | number;
     onChange?: (value: string) => void;
 }
 
-export const useInput = <T,>(options: useInputOptions<T>) => {
+export const useInput = (options: useInputOptions) => {
     const {
         value = '',
         validations,

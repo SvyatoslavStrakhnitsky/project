@@ -21,6 +21,8 @@ export default (env: BuildEnv): Configuration => {
         alias: {
             '@': path.resolve(__dirname, './src'),
         },
+        locales: path.resolve(__dirname, 'public', 'locales'),
+        buildLocales: path.resolve(__dirname, 'dist', 'locales'),
     };
 
     return buildWebpackConfig({

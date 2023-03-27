@@ -3,6 +3,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { ProgressPlugin, DefinePlugin, type WebpackPluginInstance } from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import type { BuildOptions } from './types/config';
+import CopyPlugin from 'copy-webpack-plugin';
 
 export const buildPlugins = (options: BuildOptions): WebpackPluginInstance[] => {
     const { paths, isDev, apiUrl } = options;
@@ -16,9 +17,11 @@ export const buildPlugins = (options: BuildOptions): WebpackPluginInstance[] => 
             __IS_DEV__: JSON.stringify(isDev),
             __API__: JSON.stringify(apiUrl),
         }),
-        new BundleAnalyzerPlugin({
-            openAnalyzer: false,
-        })
+        new CopyPlugin({
+            patterns: [
+                {from: paths.locales, to: paths.buildLocales}
+            ]
+        }),
     ];
 
     if (!isDev) {
@@ -27,7 +30,10 @@ export const buildPlugins = (options: BuildOptions): WebpackPluginInstance[] => 
                 filename: 'css/[name].[contenthash:8].css',
                 chunkFilename: 'css/[name].[contenthash:8].css',
             })
-        );
+        ),
+        new BundleAnalyzerPlugin({
+            openAnalyzer: false,
+        });
     }
 
     return plugins;

@@ -11,6 +11,8 @@ export type BuildPaths = {
     build: string;
     html: string;
     alias: Record<string, string>;
+    locales: string;
+    buildLocales: string;
 };
 
 export type BuildOptions = {
