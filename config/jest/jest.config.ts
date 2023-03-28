@@ -3,7 +3,10 @@ export default {
     clearMocks: true,
     errorOnDeprecated: true,
     moduleDirectories: [
-        'node_modules'
+        'node_modules',
+    ],
+    modulePaths: [
+        '<rootDir>src'
     ],
     moduleFileExtensions: [
         'js',
@@ -15,10 +18,10 @@ export default {
         'json',
         'node'
     ],
+    moduleNameMapper: {
+        '^@/(.*)$': '<rootDir>/src/$1'
+    },
     rootDir: '../..',
-    roots: [
-        '<rootDir>'
-    ],
     testEnvironment: 'jsdom',
     testMatch: [
         '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'

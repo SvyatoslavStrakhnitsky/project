@@ -1,4 +1,4 @@
-import { classNames, Mods } from './classNames';
+import { Mods, classNames } from '@/shared/lib/helpers/classNames/classNames';
 
 describe('classNames', () => {
     const mods: Mods = {

@@ -1,4 +1,4 @@
-import { formatDate } from './formatDate';
+import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
 
 describe('formatDate', () => {
     const nowDate = '2018-5-28';
