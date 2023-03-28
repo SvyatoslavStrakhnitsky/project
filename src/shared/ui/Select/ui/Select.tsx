@@ -80,7 +80,7 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
             }
             <div className={cls.select}>
                 <button className={cls.button} onClick={handleOpen}>
-                    {selectedValue}
+                    {selectedValue || value}
                 </button>
                 <ul 
                     className={classNames(cls.list, mods)} 

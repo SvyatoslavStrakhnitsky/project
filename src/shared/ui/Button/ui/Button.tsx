@@ -2,7 +2,7 @@ import { classNames, Mods } from '@/shared/lib/helpers/classNames/classNames';
 import { ButtonHTMLAttributes, FC, ReactNode } from 'react';
 import cls from './Button.module.css';
 
-type ButtonTheme = 'clear' | 'primary';
+export type ButtonTheme = 'clear' | 'primary';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;

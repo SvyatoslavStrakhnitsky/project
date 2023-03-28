@@ -7,7 +7,7 @@ import { Avatar } from '@/shared/ui/Avatar';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
 import { Icon } from '@/shared/ui/Icon';
-import { Text } from '@/shared/ui/Text';
+import { Text, TextTheme } from '@/shared/ui/Text';
 import {
     Article, ArticleBlockType, ArticleTextBlock, ArticleViewType,
 } from '../../model/types/Article';
@@ -88,6 +88,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = (props) => {
                         <ArticleBlockText
                             block={textBlock}
                             className={cls.textBlock}
+                            theme={TextTheme.INVERTED}
                         />
                     )}
                     <HStack align='center' gap={8}>

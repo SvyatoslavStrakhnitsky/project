@@ -107,9 +107,7 @@ export const UserCard: FC<UserCardProps> = (props) => {
             />}
             <HStack justify='center'>
                 {data?.avatar && (
-                    <div className={cls.avatar}>
-                        <Avatar src={data.avatar} alt="" />
-                    </div>
+                    <Avatar src={data.avatar} alt="" />
                 )}
             </HStack>
             <Input

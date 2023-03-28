@@ -8,10 +8,15 @@
     color: var(--secondary-color)
 }
 
-.clear {
+.clear,
+.clearInverted {
     all: unset;
-    color: var(--bg-color);
     cursor: pointer;
+    color: var(--primary-color);
+}
+
+.clearInverted {
+    color: var(--inverted-primary-color);
 }
 
 .primary {

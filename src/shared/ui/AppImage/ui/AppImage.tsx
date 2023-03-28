@@ -18,7 +18,8 @@ export const AppImage: FC<AppImageProps> = (props) => {
         src = '',
         alt = 'image',
         fallback,
-        errorFallback
+        errorFallback,
+        ...otherProps
     } = props;
 
     const [isLoading, setIsLoading] = useState(true);
@@ -46,5 +47,12 @@ export const AppImage: FC<AppImageProps> = (props) => {
         return errorFallback;
     }
 
-    return <img src={src} alt={alt} className={className}/>;
+    return (
+        <img 
+            src={src} 
+            alt={alt} 
+            className={className} 
+            {...otherProps}
+        />
+    );
 };

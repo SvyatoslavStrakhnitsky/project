@@ -1,5 +1,5 @@
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import type { RuleSetRule } from 'webpack';
+import { buildCssLoader } from './loaders/buildCssLoader';
 import type { BuildOptions } from './types/config';
 
 export const buildLoaders = (options: BuildOptions): RuleSetRule[] => {
@@ -22,23 +22,7 @@ export const buildLoaders = (options: BuildOptions): RuleSetRule[] => {
         type: 'asset/resource',
     };
 
-    const styleLoader = {
-        test: /\.css$/i,
-        use: [
-            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-            {
-                loader: 'css-loader',
-                options: {
-                    modules: {
-                        auto: /\.module\./,
-                        localIdentName: isDev
-                            ? '[path][name]__[local]--[hash:base64:5]'
-                            : '[hash:base64]',
-                    },
-                },
-            },
-        ],
-    };
+    const styleLoader = buildCssLoader(isDev);
 
     return [typescriptLoader, styleLoader, svgLoader, imgLoader];
 };
