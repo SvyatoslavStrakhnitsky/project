@@ -1,5 +1,5 @@
 [build]
-    base = "/articles"
+    base = "/"
 
 [[redirects]]
     from = "/*"
