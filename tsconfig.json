@@ -19,6 +19,9 @@
     "ts-node": {
         "compilerOptions": {
             "module": "CommonJS",
+            "paths": {
+                "@": ["src/*"]
+            }
         }
     }
 }
