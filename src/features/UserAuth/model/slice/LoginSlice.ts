@@ -7,7 +7,10 @@ const initialState: LoginSchema = {
     isOpen: false
 };
 
-const loginSlice = createSlice({
+export const { 
+    actions: loginActions,
+    reducer: loginReducer
+} = createSlice({
     name: 'login',
     initialState,
     reducers: {
@@ -20,7 +23,3 @@ const loginSlice = createSlice({
     }
 });
 
-export const {
-    actions: loginActions,
-    reducer: loginReducer
-} = loginSlice;

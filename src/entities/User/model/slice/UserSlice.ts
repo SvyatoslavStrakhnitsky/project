@@ -9,7 +9,10 @@ const initialState: UserSchema = {
     editData: undefined,
 };
 
-const userSlice = createSlice({
+export const {
+    actions: userActions,
+    reducer: userReducer
+} = createSlice({
     name: 'user',
     initialState,
     reducers: {
@@ -39,8 +42,3 @@ const userSlice = createSlice({
         },
     }
 });
-
-export const {
-    actions: userActions,
-    reducer: userReducer
-} = userSlice;
