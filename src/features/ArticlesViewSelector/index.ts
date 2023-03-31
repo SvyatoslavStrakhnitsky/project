@@ -1,1 +1,1 @@
-export {ArticlesViewSchema}  from'./model/types/ArticlesViewSchema';
+export type {ArticlesViewSchema}  from'./model/types/ArticlesViewSchema';
