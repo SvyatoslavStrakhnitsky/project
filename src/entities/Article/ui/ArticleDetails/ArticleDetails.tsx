@@ -23,7 +23,7 @@ import {
 import {
     articleDetailsActions,
     articleDetailsReducer
-} from '../../model/slice/ArticleDetailsSlice';
+} from '../../model/slice/articleDetailsSlice';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { PageError } from '@/shared/ui/PageError';
 import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
