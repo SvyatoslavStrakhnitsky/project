@@ -1,4 +1,4 @@
-import { userActions } from '@/entities/User';
+import { userActions } from '@/entities/User/model/slice/userSlice';
 import { useGetMeQuery } from '@/shared/api/rtkApi';
 import { TOKEN_STORAGE_KEY } from '@/shared/const/localStorage';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';

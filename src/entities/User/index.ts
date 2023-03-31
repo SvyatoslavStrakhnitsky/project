@@ -1,4 +1,3 @@
-export {userActions, userReducer} from './model/slice/userSlice';
 export {checkAuthData} from './model/selectors/checkAuthData/checkAuthData';
 export {getUserData} from './model/selectors/getUserData/getUserData';
 export {getEditUserData} from './model/selectors/getEditUserData/getEditUserData';
