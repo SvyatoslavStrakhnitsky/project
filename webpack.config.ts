@@ -10,7 +10,7 @@ import type {
 export default (env: BuildEnv): Configuration => {
     const mode: BuildMode = env.mode || 'development';
     const isDev = mode === 'development';
-    const apiUrl = env.apiUrl || 'http://localhost:5000/api';
+    const apiUrl = process.env.PORT || 'http://localhost:5000/api';
 
     const PORT = env.port || 3000;
 
